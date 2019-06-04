@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.stylefeng.guns.rest.modular.film.mapper.IndexMapper">
+
+    <resultMap id="bannerMap" type="com.stylefeng.guns.rest.modular.film.bean.banner.Banner">
+        <result column="UUID" property="bannerId"/>
+        <result column="banner_address" property="bannerAddress"/>
+        <result column="banner_url" property="bannerUrl"/>
+        <result column="is_valid" property="isValid"/>
+    </resultMap>
+
+    <!--查询主页的banner列表-->
+    <select id="queryBanners" resultMap="bannerMap">
+        select UUID,banner_address,banner_url,is_valid from mtime_banner_t
+    </select>
+
+    <resultMap id="filmMap" type="com.stylefeng.guns.rest.modular.film.bean.film.Film">
+        <result column="UUID" property="filmId"/>
+        <result column="film_type" property="filmType"/>
+        <result column="film_name" property="filmName"/>
+        <result column="img_address" property="imgAddress"/>
+        <result column="film_score" property="filmScore"/>
+        <result column="expect_num" property="expectNum"/>
+        <result column="film_time" property="showTime"/>
+    </resultMap>
+    <!--查询主页状态为status的电影-->
+    <select id="queryFilms" resultMap="filmMap">
+        select UUID,film_type,film_name,img_address,film_score,expect_num,film_time from mtime_film_t
+        <where>
+            <if test="status != 0">
+              film_status = #{status}
+            </if>
+        </where>
+        <if test="order != null">
+            order by #{order}
+        </if>
+    </select>
+
+    <!--查询不同status电影总数-->
+    <select id="queryCountFilm" resultType="java.lang.Integer">
+        select count(*) from mtime_film_t where film_status = #{status}
+    </select>
+</mapper>
