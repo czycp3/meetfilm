@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @author czy
  * @date 2019/6/4 17:11
  */
-@RestController
+@RestController("film")
 public class FilmController {
 
     @Reference
