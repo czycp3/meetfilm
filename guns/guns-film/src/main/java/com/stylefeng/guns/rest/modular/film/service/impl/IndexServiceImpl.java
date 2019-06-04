@@ -34,8 +34,14 @@ public class IndexServiceImpl implements IndexService {
     @Override
     public ResponseVo getIndex() {
         //查询主页banner信息
-        List<Banner> bannerList = indexMapper.queryBanners();
-
+        List<Banner> bannerList;
+        try {
+            bannerList = indexMapper.queryBanners();
+        }catch (Exception e){
+            responseVo.setStatus(1);
+            responseVo.setMsg("查询失败,无banner可加载");
+            return responseVo;
+        }
         //查询主页hotFilms信息
         List<Film> hotFilmList = indexMapper.queryFilms(1,null);
         int countHotFilm = indexMapper.queryCountFilm(1);
