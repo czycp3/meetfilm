@@ -27,7 +27,7 @@ spring:
       max-file-size: 100MB
 
 mybatis-plus:
-  typeAliasesPackage: com.stylefeng.guns.modular.system.model
+  typeAliasesPackage: com.stylefeng.guns.modular.system.bean
 
 log:
   path: /opt/guns/logs

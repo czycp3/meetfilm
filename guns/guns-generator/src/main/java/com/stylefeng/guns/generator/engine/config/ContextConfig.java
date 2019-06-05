@@ -20,7 +20,7 @@ public class ContextConfig {
 
     private String proPackage = "com.stylefeng.guns.admin";
     private String coreBasePackage = "com.stylefeng.guns.core";
-    private String modelPackageName = "com.stylefeng.guns.modular.system.model";        //model的包名
+    private String modelPackageName = "com.stylefeng.guns.modular.system.bean";        //model的包名
     private String modelMapperPackageName = "com.stylefeng.guns.modular.system.dao";    //model的dao
     private String entityName;              //实体的名称
 
@@ -39,7 +39,7 @@ public class ContextConfig {
         if (entityName == null) {
             entityName = bizEnBigName;
         }
-        modelPackageName = proPackage + "." + "modular.system.model";
+        modelPackageName = proPackage + "." + "modular.system.bean";
         modelMapperPackageName = proPackage + "." + "modular.system.dao";
     }
 
