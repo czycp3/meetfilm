@@ -1,10 +1,11 @@
 package com.stylefeng.guns.rest.modular.cinema.bean;
 
-import com.baomidou.mybatisplus.enums.IdType;
-import com.baomidou.mybatisplus.annotations.TableId;
-import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.activerecord.Model;
+import com.baomidou.mybatisplus.annotations.TableField;
+import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.annotations.TableName;
+import com.baomidou.mybatisplus.enums.IdType;
+
 import java.io.Serializable;
 
 /**
@@ -24,7 +25,7 @@ public class MtimeFieldT extends Model<MtimeFieldT> {
      * 主键编号
      */
     @TableId(value = "UUID", type = IdType.AUTO)
-    private Integer uuid;
+    private Integer fieldId;
     /**
      * 影院编号
      */
@@ -60,13 +61,19 @@ public class MtimeFieldT extends Model<MtimeFieldT> {
      */
     private Integer price;
 
+    /*添加的language*/
+    private String language;
 
-    public Integer getUuid() {
-        return uuid;
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
     }
 
-    public void setUuid(Integer uuid) {
-        this.uuid = uuid;
+    public Integer getFieldId() {
+        return fieldId;
+    }
+
+    public void setFieldId(Integer fieldId) {
+        this.fieldId = fieldId;
     }
 
     public Integer getCinemaId() {
@@ -125,22 +132,31 @@ public class MtimeFieldT extends Model<MtimeFieldT> {
         this.price = price;
     }
 
+    public String getLanguage() {
+        return language;
+    }
+
+    public void setLanguage(String language) {
+        this.language = language;
+    }
+
     @Override
     protected Serializable pkVal() {
-        return this.uuid;
+        return this.fieldId;
     }
 
     @Override
     public String toString() {
         return "MtimeFieldT{" +
-        "uuid=" + uuid +
-        ", cinemaId=" + cinemaId +
-        ", filmId=" + filmId +
-        ", beginTime=" + beginTime +
-        ", endTime=" + endTime +
-        ", hallId=" + hallId +
-        ", hallName=" + hallName +
-        ", price=" + price +
-        "}";
+                "uuid=" + fieldId +
+                ", cinemaId=" + cinemaId +
+                ", filmId=" + filmId +
+                ", beginTime='" + beginTime + '\'' +
+                ", endTime='" + endTime + '\'' +
+                ", hallId=" + hallId +
+                ", hallName='" + hallName + '\'' +
+                ", price=" + price +
+                ", language='" + language + '\'' +
+                '}';
     }
 }

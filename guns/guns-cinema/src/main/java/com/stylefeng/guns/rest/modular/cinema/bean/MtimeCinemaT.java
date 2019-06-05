@@ -1,10 +1,10 @@
 package com.stylefeng.guns.rest.modular.cinema.bean;
 
-import com.baomidou.mybatisplus.enums.IdType;
-import com.baomidou.mybatisplus.annotations.TableId;
-import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.activerecord.Model;
+import com.baomidou.mybatisplus.annotations.TableField;
+import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.annotations.TableName;
+import com.baomidou.mybatisplus.enums.IdType;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 import java.io.Serializable;
@@ -27,7 +27,7 @@ public class MtimeCinemaT extends Model<MtimeCinemaT> {
      * 主键编号
      */
     @TableId(value = "UUID", type = IdType.AUTO)
-    private Integer uuid;
+    private Integer cinemaId;
     /**
      * 影院名称
      */
@@ -57,7 +57,7 @@ public class MtimeCinemaT extends Model<MtimeCinemaT> {
      * 影院图片地址
      */
     @TableField("img_address")
-    private String imgAddress;
+    private String imgUrl;
     /**
      * 影院地址
      */
@@ -70,12 +70,20 @@ public class MtimeCinemaT extends Model<MtimeCinemaT> {
     private Integer minimumPrice;
 
 
-    public Integer getUuid() {
-        return uuid;
+    public Integer getCinemaId() {
+        return cinemaId;
     }
 
-    public void setUuid(Integer uuid) {
-        this.uuid = uuid;
+    public void setCinemaId(Integer cinemaId) {
+        this.cinemaId = cinemaId;
+    }
+
+    public String getImgUrl() {
+        return imgUrl;
+    }
+
+    public void setImgUrl(String imgUrl) {
+        this.imgUrl = imgUrl;
     }
 
     public String getCinemaName() {
@@ -118,13 +126,6 @@ public class MtimeCinemaT extends Model<MtimeCinemaT> {
         this.hallIds = hallIds;
     }
 
-    public String getImgAddress() {
-        return imgAddress;
-    }
-
-    public void setImgAddress(String imgAddress) {
-        this.imgAddress = imgAddress;
-    }
 
     public String getAddress() {
         return address;
@@ -144,21 +145,21 @@ public class MtimeCinemaT extends Model<MtimeCinemaT> {
 
     @Override
     protected Serializable pkVal() {
-        return this.uuid;
+        return this.cinemaId;
     }
 
     @Override
     public String toString() {
         return "MtimeCinemaT{" +
-        "uuid=" + uuid +
-        ", cinemaName=" + cinemaName +
-        ", cinemaPhone=" + cinemaPhone +
-        ", brandId=" + brandId +
-        ", areaId=" + areaId +
-        ", hallIds=" + hallIds +
-        ", imgAddress=" + imgAddress +
-        ", address=" + address +
-        ", minimumPrice=" + minimumPrice +
-        "}";
+                "cinemaId=" + cinemaId +
+                ", cinemaName='" + cinemaName + '\'' +
+                ", cinemaPhone='" + cinemaPhone + '\'' +
+                ", brandId=" + brandId +
+                ", areaId=" + areaId +
+                ", hallIds='" + hallIds + '\'' +
+                ", imgUrl='" + imgUrl + '\'' +
+                ", address='" + address + '\'' +
+                ", minimumPrice=" + minimumPrice +
+                '}';
     }
 }

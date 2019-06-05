@@ -1,7 +1,9 @@
 package com.stylefeng.guns.rest.modular.cinema.dao;
 
+import com.stylefeng.guns.rest.modular.cinema.bean.Data;
 import com.stylefeng.guns.rest.modular.cinema.bean.MtimeFieldT;
 import com.baomidou.mybatisplus.mapper.BaseMapper;
+import org.apache.ibatis.annotations.Param;
 
 /**
  * <p>
@@ -13,4 +15,5 @@ import com.baomidou.mybatisplus.mapper.BaseMapper;
  */
 public interface MtimeFieldTMapper extends BaseMapper<MtimeFieldT> {
 
+    Data GetFieldInfoByCinemaIdAndFieldId(@Param("cinemaId") String cinemaId, @Param("fieldId") String fieldId);
 }

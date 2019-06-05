@@ -64,7 +64,7 @@ public class EntityGenerator {
         // 包配置
         PackageConfig pc = new PackageConfig();
         pc.setParent(null);
-        pc.setEntity("com.stylefeng.guns.rest.persistence.model");
+        pc.setEntity("com.stylefeng.guns.rest.persistence.bean");
         pc.setMapper("com.stylefeng.guns.rest.persistence.dao");
         pc.setXml("com.stylefeng.guns.rest.persistence.dao.mapping");
         pc.setService("TTT");       //本项目没用，生成之后删掉

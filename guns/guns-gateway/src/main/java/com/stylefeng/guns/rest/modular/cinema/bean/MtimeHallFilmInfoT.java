@@ -1,11 +1,22 @@
 package com.stylefeng.guns.rest.modular.cinema.bean;
 
+<<<<<<< HEAD
 import com.baomidou.mybatisplus.enums.IdType;
 import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.activerecord.Model;
 import com.baomidou.mybatisplus.annotations.TableName;
 import java.io.Serializable;
+=======
+import com.baomidou.mybatisplus.activerecord.Model;
+import com.baomidou.mybatisplus.annotations.TableField;
+import com.baomidou.mybatisplus.annotations.TableId;
+import com.baomidou.mybatisplus.annotations.TableName;
+import com.baomidou.mybatisplus.enums.IdType;
+
+import java.io.Serializable;
+import java.util.List;
+>>>>>>> f2e93abc6342909d36680097ffe9aafce752e28e
 
 /**
  * <p>
@@ -49,7 +60,11 @@ public class MtimeHallFilmInfoT extends Model<MtimeHallFilmInfoT> {
      * 电影语言
      */
     @TableField("film_language")
+<<<<<<< HEAD
     private String filmLanguage;
+=======
+    private String filmType;
+>>>>>>> f2e93abc6342909d36680097ffe9aafce752e28e
     /**
      * 演员列表
      */
@@ -60,6 +75,25 @@ public class MtimeHallFilmInfoT extends Model<MtimeHallFilmInfoT> {
     @TableField("img_address")
     private String imgAddress;
 
+<<<<<<< HEAD
+=======
+    /*
+    *电影厅
+    */
+    private List<MtimeFieldT> filmFields;
+
+    public List<MtimeFieldT> getFilmFields() {
+        return filmFields;
+    }
+
+    public void setFilmFields(List<MtimeFieldT> filmFields) {
+        this.filmFields = filmFields;
+    }
+
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
+    }
+>>>>>>> f2e93abc6342909d36680097ffe9aafce752e28e
 
     public Integer getUuid() {
         return uuid;
@@ -101,12 +135,21 @@ public class MtimeHallFilmInfoT extends Model<MtimeHallFilmInfoT> {
         this.filmCats = filmCats;
     }
 
+<<<<<<< HEAD
     public String getFilmLanguage() {
         return filmLanguage;
     }
 
     public void setFilmLanguage(String filmLanguage) {
         this.filmLanguage = filmLanguage;
+=======
+    public String getFilmType() {
+        return filmType;
+    }
+
+    public void setFilmType(String filmType) {
+        this.filmType = filmType;
+>>>>>>> f2e93abc6342909d36680097ffe9aafce752e28e
     }
 
     public String getActors() {
@@ -133,6 +176,7 @@ public class MtimeHallFilmInfoT extends Model<MtimeHallFilmInfoT> {
     @Override
     public String toString() {
         return "MtimeHallFilmInfoT{" +
+<<<<<<< HEAD
         "uuid=" + uuid +
         ", filmId=" + filmId +
         ", filmName=" + filmName +
@@ -142,5 +186,17 @@ public class MtimeHallFilmInfoT extends Model<MtimeHallFilmInfoT> {
         ", actors=" + actors +
         ", imgAddress=" + imgAddress +
         "}";
+=======
+                "uuid=" + uuid +
+                ", filmId=" + filmId +
+                ", filmName='" + filmName + '\'' +
+                ", filmLength='" + filmLength + '\'' +
+                ", filmCats='" + filmCats + '\'' +
+                ", filmType='" + filmType + '\'' +
+                ", actors='" + actors + '\'' +
+                ", imgAddress='" + imgAddress + '\'' +
+                ", filmFields=" + filmFields +
+                '}';
+>>>>>>> f2e93abc6342909d36680097ffe9aafce752e28e
     }
 }

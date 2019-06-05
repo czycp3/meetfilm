@@ -1,10 +1,15 @@
 package com.stylefeng.guns.rest.modular.cinema.dao;
 
+
 import com.stylefeng.guns.rest.modular.cinema.bean.*;
 import com.baomidou.mybatisplus.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
+
+
+import java.util.ArrayList;
+
 
 /**
  * <p>
@@ -14,6 +19,7 @@ import java.util.List;
  * @author stylefeng
  * @since 2019-06-04
  */
+
 public interface MtimeCinemaTMapper extends BaseMapper<MtimeCinemaT> {
 
     List<MtimeCinemaT> selectCinemaListByCondition(@Param("requestVo") RequestVo requestVo);
@@ -25,4 +31,9 @@ public interface MtimeCinemaTMapper extends BaseMapper<MtimeCinemaT> {
     MtimeAreaDictT selectAreaListById(@Param("areaId") Integer areaId);
 
     MtimeHallDictT selectHallTypeListById(@Param("hallTypeId") String hallTypeId);
+
+    ArrayList<MtimeHallFilmInfoT> selectDataFilmListByCinemaId(@Param("cinemaId") Integer i);
+
+    MtimeCinemaT selectDataCinemaInfoByCinemaId(@Param("cinemaId") Integer i);
+
 }

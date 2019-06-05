@@ -13,6 +13,21 @@ public class BaseResultVo implements Serializable {
     Integer nowPage;
     Integer totalPage;
 
+    private String imgPre;
+    private String msg;
+
+    @Override
+    public String toString() {
+        return "BaseResultVo{" +
+                "status=" + status +
+                ", data=" + data +
+                ", nowPage=" + nowPage +
+                ", totalPage=" + totalPage +
+                ", imgPre='" + imgPre + '\'' +
+                ", msg='" + msg + '\'' +
+                '}';
+    }
+
     public Integer getStatus() {
         return status;
     }
@@ -43,5 +58,21 @@ public class BaseResultVo implements Serializable {
 
     public void setTotalPage(Integer totalPage) {
         this.totalPage = totalPage;
+    }
+
+    public String getImgPre() {
+        return imgPre;
+    }
+
+    public void setImgPre(String imgPre) {
+        this.imgPre = imgPre;
+    }
+
+    public String getMsg() {
+        return msg;
+    }
+
+    public void setMsg(String msg) {
+        this.msg = msg;
     }
 }

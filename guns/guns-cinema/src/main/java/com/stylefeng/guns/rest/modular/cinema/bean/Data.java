@@ -14,6 +14,11 @@ public class Data implements Serializable {
     List<MtimeAreaDictT> mtimeAreaDictTList;
     List<MtimeHallDictT> mtimeHallDictTList;
 
+    List<MtimeHallFilmInfoT> filmList;
+    MtimeCinemaT cinemaInfo;
+    MtimeHallFilmInfoT filmInfo;
+    MtimeHallDictT hallInfo;
+
     public List<MtimeCinemaT> getCinemas() {
         return cinemas;
     }
@@ -46,10 +51,38 @@ public class Data implements Serializable {
         this.mtimeHallDictTList = mtimeHallDictTList;
     }
 
-
-
     public Data() {
     }
 
+    public List<MtimeHallFilmInfoT> getFilmList() {
+        return filmList;
+    }
 
+    public void setFilmList(List<MtimeHallFilmInfoT> filmList) {
+        this.filmList = filmList;
+    }
+
+    public MtimeCinemaT getCinemaInfo() {
+        return cinemaInfo;
+    }
+
+    public void setCinemaInfo(MtimeCinemaT cinemaInfo) {
+        this.cinemaInfo = cinemaInfo;
+    }
+
+    public MtimeHallFilmInfoT getFilmInfo() {
+        return filmInfo;
+    }
+
+    public void setFilmInfo(MtimeHallFilmInfoT filmInfo) {
+        this.filmInfo = filmInfo;
+    }
+
+    public MtimeHallDictT getHallInfo() {
+        return hallInfo;
+    }
+
+    public void setHallInfo(MtimeHallDictT hallInfo) {
+        this.hallInfo = hallInfo;
+    }
 }
