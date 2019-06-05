@@ -1,6 +1,7 @@
 package com.stylefeng.guns.rest.modular.film.service.impl;
 
 import com.alibaba.dubbo.config.annotation.Service;
+import com.stylefeng.guns.core.exception.ServiceException;
 import com.stylefeng.guns.rest.modular.film.bean.MtimeFilmT;
 import com.stylefeng.guns.rest.modular.film.bean.dictionary.Category;
 import com.stylefeng.guns.rest.modular.film.bean.dictionary.FilmYear;
@@ -32,23 +33,27 @@ public class FilmServiceImpl implements FilmService{
     }
 
     @Override
-    public FilmConditionVo getConditionList(ConditionParam conditionParam) {
-        String catId = conditionParam.getCatId() == null ? "99" : conditionParam.getCatId();
-        String sourceId = conditionParam.getSourceId() == null ? "99" : conditionParam.getSourceId();
-        String yearId = conditionParam.getYearId() == null ? "99" : conditionParam.getYearId();
-        List<Category> catList =  mtimeFilmTMapper.queryFilmByCat(catId);
-        List<Source> sourceList =  mtimeFilmTMapper.queryFilmBySource(sourceId);
-        List<FilmYear> yearList =  mtimeFilmTMapper.queryFilmByYear(yearId);
-
+    public FilmConditionVo getConditionList(ConditionParam conditionParam) throws ServiceException{
         FilmConditionVo filmConditionVo = new FilmConditionVo();
         ConditionData conditionData = new ConditionData();
+        try {
+            String catId = conditionParam.getCatId() == null ? "99" : conditionParam.getCatId();
+            String sourceId = conditionParam.getSourceId() == null ? "99" : conditionParam.getSourceId();
+            String yearId = conditionParam.getYearId() == null ? "99" : conditionParam.getYearId();
+            List<Category> catList = mtimeFilmTMapper.queryFilmByCat(catId);
+            List<Source> sourceList = mtimeFilmTMapper.queryFilmBySource(sourceId);
+            List<FilmYear> yearList = mtimeFilmTMapper.queryFilmByYear(yearId);
 
-        conditionData.setCatInfo(catList);
-        conditionData.setSourceInfo(sourceList);
-        conditionData.setYearInfo(yearList);
+            conditionData.setCatInfo(catList);
+            conditionData.setSourceInfo(sourceList);
+            conditionData.setYearInfo(yearList);
 
-        filmConditionVo.setStatus(0);
-        filmConditionVo.setData(conditionData);
+            filmConditionVo.setStatus(0);
+            filmConditionVo.setData(conditionData);
+
+        }catch (Exception e){
+            throw new ServiceException(1,"查询失败，无条件可加载");
+        }
         return filmConditionVo;
     }
 }

@@ -1,12 +1,10 @@
 package com.stylefeng.guns.rest.modular.film.controller;
 
 import com.alibaba.dubbo.config.annotation.Reference;
+import com.stylefeng.guns.core.exception.ServiceException;
 import com.stylefeng.guns.rest.modular.film.bean.resultvo.ResponseVo;
 import com.stylefeng.guns.rest.modular.film.service.IndexService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -20,7 +18,7 @@ public class IndexController {
     private IndexService indexService;
 
     @RequestMapping("/film/getIndex")
-    public ResponseVo getIndex(){
+    public ResponseVo getIndex() throws ServiceException {
         return indexService.getIndex();
     }
 }

@@ -1,5 +1,6 @@
 package com.stylefeng.guns.rest.modular.film.service;
 
+import com.stylefeng.guns.core.exception.ServiceException;
 import com.stylefeng.guns.rest.modular.film.bean.MtimeFilmT;
 import com.stylefeng.guns.rest.modular.film.bean.film.ConditionParam;
 import com.stylefeng.guns.rest.modular.film.bean.resultvo.FilmConditionVo;
@@ -21,5 +22,5 @@ public interface FilmService {
      * @param  conditionParam catId,sourceId,yearId
      * @return FilmConditionVo
      */
-    FilmConditionVo getConditionList(ConditionParam conditionParam);
+    FilmConditionVo getConditionList(ConditionParam conditionParam) throws ServiceException;
 }
