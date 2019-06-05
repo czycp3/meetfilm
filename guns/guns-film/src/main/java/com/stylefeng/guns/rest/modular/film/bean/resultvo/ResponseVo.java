@@ -13,6 +13,7 @@ public class ResponseVo implements Serializable {
     private int status;
     private String imgPre;
     private IndexData data;
+    private String msg;
 
     public int getStatus() {
         return status;
@@ -38,12 +39,21 @@ public class ResponseVo implements Serializable {
         this.data = data;
     }
 
+    public String getMsg() {
+        return msg;
+    }
+
+    public void setMsg(String msg) {
+        this.msg = msg;
+    }
+
     @Override
     public String toString() {
         return "ResponseVo{" +
                 "status=" + status +
                 ", imgPre='" + imgPre + '\'' +
                 ", data=" + data +
+                ", msg='" + msg + '\'' +
                 '}';
     }
 }

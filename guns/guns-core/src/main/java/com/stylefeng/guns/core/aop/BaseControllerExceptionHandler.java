@@ -1,8 +1,10 @@
 package com.stylefeng.guns.core.aop;
 
+import com.stylefeng.guns.core.base.tips.ErrorMsg;
 import com.stylefeng.guns.core.base.tips.ErrorTip;
 import com.stylefeng.guns.core.exception.GunsException;
 import com.stylefeng.guns.core.exception.GunsExceptionEnum;
+import com.stylefeng.guns.core.exception.ServiceException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
@@ -32,14 +34,25 @@ public class BaseControllerExceptionHandler {
     }
 
     /**
+     * 拦截自定义业务异常
+     */
+    @ExceptionHandler(ServiceException.class)
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    @ResponseBody
+    public ErrorMsg serviceException(ServiceException e) {
+        log.error("业务异常:", e);
+        return new ErrorMsg(e.getStatus(), e.getMessage());
+    }
+
+    /**
      * 拦截未知的运行时异常
      */
     @ExceptionHandler(RuntimeException.class)
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     @ResponseBody
-    public ErrorTip notFount(RuntimeException e) {
+    public ErrorMsg notFount(RuntimeException e) {
         log.error("运行时异常:", e);
-        return new ErrorTip(GunsExceptionEnum.SERVER_ERROR.getCode(), GunsExceptionEnum.SERVER_ERROR.getMessage());
+        return new ErrorMsg(GunsExceptionEnum.SERVER_ERROR.getCode(), GunsExceptionEnum.SERVER_ERROR.getMessage());
     }
 
 }
