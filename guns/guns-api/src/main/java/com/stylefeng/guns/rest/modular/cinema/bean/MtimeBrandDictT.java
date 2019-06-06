@@ -22,6 +22,15 @@ public class MtimeBrandDictT extends Model<MtimeBrandDictT> {
     }
 
     private static final long serialVersionUID = 1L;
+    private Boolean isActive=false;
+
+    public Boolean getActive() {
+        return isActive;
+    }
+
+    public void setActive(Boolean active) {
+        isActive = active;
+    }
 
     /**
      * 主键编号

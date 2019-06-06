@@ -36,13 +36,12 @@ public class MtimeCinemaTServiceImpl implements IMtimeCinemaTService {
         BaseResultVo baseResultVo = new BaseResultVo();
         Data data = new Data();
         data.setCinemas(mtimeCinemaTList);
-        int pageSize = requestVo.getPageSize()==null?12:requestVo.getPageSize();
-        int totalPage = mtimeCinemaTList.size()/pageSize;
+        int totalPage = mtimeCinemaTList.size()/requestVo.getPageSize();
 
         baseResultVo.setTotalPage(totalPage);
 
         baseResultVo.setData(data);
-        baseResultVo.setNowPage(requestVo.getNowPage()==null?1:requestVo.getNowPage());
+        baseResultVo.setNowPage(requestVo.getNowPage());
 
         return baseResultVo;
     }

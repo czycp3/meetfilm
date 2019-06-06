@@ -8,11 +8,11 @@ import java.io.Serializable;
  * @Version 1.0
  */
 public class RequestVo implements Serializable {
-    String brandId;
-    String hallType;
-    String districtId;
-    Integer pageSize;
-    Integer nowPage;
+    Integer brandId =99;
+    Integer hallType =99;
+    Integer districtId=99;
+    Integer pageSize=12;
+    Integer nowPage=1;
     String areaId;
 
     public Integer getPageSize() {
@@ -34,30 +34,29 @@ public class RequestVo implements Serializable {
                 '}';
     }
 
-    public String getBrandId() {
-        return brandId;
-    }
-
-    public void setBrandId(String brandId) {
+    public void setBrandId(Integer brandId) {
         this.brandId = brandId;
     }
 
-    public String getHallType() {
-        return hallType;
-    }
-
-    public void setHallType(String hallType) {
+    public void setHallType(Integer hallType) {
         this.hallType = hallType;
     }
 
-    public String getDistrictId() {
-        return districtId;
-    }
-
-    public void setDistrictId(String districtId) {
+    public void setDistrictId(Integer districtId) {
         this.districtId = districtId;
     }
 
+    public Integer getBrandId() {
+        return brandId;
+    }
+
+    public Integer getHallType() {
+        return hallType;
+    }
+
+    public Integer getDistrictId() {
+        return districtId;
+    }
 
     public Integer getNowPage() {
         return nowPage;

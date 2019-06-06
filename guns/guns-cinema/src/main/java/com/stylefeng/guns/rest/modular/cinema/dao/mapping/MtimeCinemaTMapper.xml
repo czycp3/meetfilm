@@ -19,13 +19,13 @@
         select UUID,cinema_name,cinema_address,minimum_price from mtime_cinema_t
         <where>
             1=1
-            <if test="requestVo.brandId!=null">
+            <if test="requestVo.brandId!=99">
                 and brand_id=#{requestVo.brandId}
             </if>
-            <if test="requestVo.hallType!=null">
+            <if test="requestVo.hallType!=99">
                 and hall_ids like concat('%#',#{requestVo.hallType},'#%')
             </if>
-            <if test="requestVo.districtId!=null">
+            <if test="requestVo.districtId!=99">
                 and area_id=#{requestVo.districtId}
             </if>
         </where>

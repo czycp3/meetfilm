@@ -31,6 +31,16 @@ public class MtimeAreaDictT extends Model<MtimeAreaDictT> {
     @TableField("show_name")
     private String areaName;
 
+    private Boolean isAtive =false;
+
+    public Boolean getAtive() {
+        return isAtive;
+    }
+
+    public void setAtive(Boolean ative) {
+        isAtive = ative;
+    }
+
     @Override
     public String toString() {
         return "MtimeAreaDictT{" +
