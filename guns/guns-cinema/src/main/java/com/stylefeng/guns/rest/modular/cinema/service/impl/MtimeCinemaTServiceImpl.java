@@ -98,19 +98,15 @@ public class MtimeCinemaTServiceImpl implements IMtimeCinemaTService {
             return baseResultVo;
         }
         Data data = new Data();
-        try {
-            mtimeCinemaTS = mtimeCinemaTMapper.selectDataFilmListByCinemaId(i);
-            mtimeCinemaT =mtimeCinemaTMapper.selectDataCinemaInfoByCinemaId(i);
-        } catch (Exception e) {
-            baseResultVo.setStatus(1);
-            baseResultVo.setMsg("影院信息查询失败");
-            return baseResultVo;
+        mtimeCinemaTS = mtimeCinemaTMapper.selectDataFilmListByCinemaId(i);
+        mtimeCinemaT =mtimeCinemaTMapper.selectDataCinemaInfoByCinemaId(i);
+        if (mtimeCinemaT==null||mtimeCinemaTS==null){
+            throw new ServiceException( 1,"影院信息查询失败");
         }
         data.setFilmList(mtimeCinemaTS);
         data.setCinemaInfo(mtimeCinemaT);
         baseResultVo.setData(data);
         baseResultVo.setImgPre("http://img.meetingshop.cn/");
-
         return baseResultVo;
     }
 

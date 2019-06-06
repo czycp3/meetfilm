@@ -1,6 +1,7 @@
 package com.stylefeng.guns.rest.modular.cinema.service.impl;
 
 import com.alibaba.dubbo.config.annotation.Service;
+import com.stylefeng.guns.core.exception.ServiceException;
 import com.stylefeng.guns.rest.modular.cinema.bean.BaseResultVo;
 import com.stylefeng.guns.rest.modular.cinema.bean.Data;
 import com.stylefeng.guns.rest.modular.cinema.bean.MtimeHallDictT;
@@ -33,12 +34,9 @@ public class MtimeFieldTServiceImpl implements IMtimeFieldTService {
             return baseResultVo;
         }
         Data data;
-        try {
-            data = mtimeFieldTMapper.GetFieldInfoByCinemaIdAndFieldId(cinemaId,fieldId);
-        } catch (Exception e) {
-            baseResultVo.setStatus(1);
-            baseResultVo.setMsg("信息查询失败");
-            return baseResultVo;
+        data = mtimeFieldTMapper.GetFieldInfoByCinemaIdAndFieldId(cinemaId,fieldId);
+        if (data==null){
+        throw new ServiceException( 1,"影院信息查询失败");
         }
         MtimeHallDictT hallInfo = data.getHallInfo();
         hallInfo.setSoldSeats("1,2,3,5,12");
