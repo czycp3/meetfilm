@@ -8,6 +8,10 @@ public class ServiceException extends RuntimeException {
     private int status;
     private String message;
 
+    public ServiceException(){
+
+    }
+
     public ServiceException(int status, String message) {
         this.status = status;
         this.message = message;

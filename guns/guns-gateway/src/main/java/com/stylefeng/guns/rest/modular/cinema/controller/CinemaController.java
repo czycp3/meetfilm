@@ -21,9 +21,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 @RestController
 @RequestMapping("/cinema")
 public class CinemaController {
-    @Reference
+    @Reference(check = false)
     IMtimeCinemaTService iMtimeCinemaTService;
-    @Reference
+    @Reference(check = false)
     IMtimeFieldTService iMtimeFieldTService;
 
     @GetMapping("/getCinemas")
