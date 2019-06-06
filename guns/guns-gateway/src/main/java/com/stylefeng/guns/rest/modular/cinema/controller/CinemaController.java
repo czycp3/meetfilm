@@ -2,12 +2,14 @@ package com.stylefeng.guns.rest.modular.cinema.controller;
 
 import com.alibaba.dubbo.config.annotation.Reference;
 import com.stylefeng.guns.rest.modular.cinema.bean.BaseResultVo;
-<<<<<<< HEAD
+
 import com.stylefeng.guns.rest.modular.cinema.bean.RequestVo;
 import com.stylefeng.guns.rest.modular.cinema.service.IMtimeCinemaTService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import com.stylefeng.guns.rest.modular.cinema.service.IMtimeFieldTService;
+import org.springframework.web.bind.annotation.PostMapping;
 
 /**
  * @Author: zero
@@ -15,20 +17,16 @@ import org.springframework.web.bind.annotation.RestController;
  * @Version 1.0
  */
 
-=======
-import com.stylefeng.guns.rest.modular.cinema.service.IMtimeCinemaTService;
-import com.stylefeng.guns.rest.modular.cinema.service.IMtimeFieldTService;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 
->>>>>>> f2e93abc6342909d36680097ffe9aafce752e28e
+
+
 @RestController
 @RequestMapping("/cinema")
 public class CinemaController {
     @Reference
     IMtimeCinemaTService iMtimeCinemaTService;
-<<<<<<< HEAD
+    @Reference
+    IMtimeFieldTService iMtimeFieldTService;
 
     @GetMapping("/getCinemas")
     public BaseResultVo getCinemas(RequestVo requestVo){
@@ -37,11 +35,11 @@ public class CinemaController {
     }
 
     @GetMapping("/getCondition")
-    public BaseResultVo getCondition(RequestVo requestVo){
+    public BaseResultVo getCondition(RequestVo requestVo) {
         BaseResultVo baseResultVo = iMtimeCinemaTService.selectCinemaMsgByCondition(requestVo);
-=======
-    @Reference
-    IMtimeFieldTService iMtimeFieldTService;
+        return baseResultVo;
+    }
+
     @RequestMapping("/getFileds")
     public BaseResultVo  GetFileds(String cinemaId){
         BaseResultVo baseResultVo = iMtimeCinemaTService.GetFileds(cinemaId);
@@ -50,7 +48,7 @@ public class CinemaController {
     @PostMapping("/getFieldInfo")
     public BaseResultVo GetFieldInfo(String cinemaId,String fieldId){
         BaseResultVo baseResultVo=iMtimeFieldTService.GetFieldInfo(cinemaId,fieldId);
->>>>>>> f2e93abc6342909d36680097ffe9aafce752e28e
+
         return baseResultVo;
     }
 }

@@ -1,19 +1,11 @@
 package com.stylefeng.guns.rest.modular.cinema.bean;
 
-<<<<<<< HEAD
-import com.baomidou.mybatisplus.enums.IdType;
-import com.baomidou.mybatisplus.annotations.TableId;
-import com.baomidou.mybatisplus.annotations.TableField;
-import com.baomidou.mybatisplus.activerecord.Model;
-import com.baomidou.mybatisplus.annotations.TableName;
-=======
 import com.baomidou.mybatisplus.activerecord.Model;
 import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.annotations.TableName;
 import com.baomidou.mybatisplus.enums.IdType;
 
->>>>>>> f2e93abc6342909d36680097ffe9aafce752e28e
 import java.io.Serializable;
 
 /**
@@ -33,11 +25,7 @@ public class MtimeFieldT extends Model<MtimeFieldT> {
      * 主键编号
      */
     @TableId(value = "UUID", type = IdType.AUTO)
-<<<<<<< HEAD
-    private Integer uuid;
-=======
     private Integer fieldId;
->>>>>>> f2e93abc6342909d36680097ffe9aafce752e28e
     /**
      * 影院编号
      */
@@ -73,15 +61,6 @@ public class MtimeFieldT extends Model<MtimeFieldT> {
      */
     private Integer price;
 
-<<<<<<< HEAD
-
-    public Integer getUuid() {
-        return uuid;
-    }
-
-    public void setUuid(Integer uuid) {
-        this.uuid = uuid;
-=======
     /*添加的language*/
     private String language;
 
@@ -95,7 +74,6 @@ public class MtimeFieldT extends Model<MtimeFieldT> {
 
     public void setFieldId(Integer fieldId) {
         this.fieldId = fieldId;
->>>>>>> f2e93abc6342909d36680097ffe9aafce752e28e
     }
 
     public Integer getCinemaId() {
@@ -154,11 +132,6 @@ public class MtimeFieldT extends Model<MtimeFieldT> {
         this.price = price;
     }
 
-<<<<<<< HEAD
-    @Override
-    protected Serializable pkVal() {
-        return this.uuid;
-=======
     public String getLanguage() {
         return language;
     }
@@ -170,23 +143,11 @@ public class MtimeFieldT extends Model<MtimeFieldT> {
     @Override
     protected Serializable pkVal() {
         return this.fieldId;
->>>>>>> f2e93abc6342909d36680097ffe9aafce752e28e
     }
 
     @Override
     public String toString() {
         return "MtimeFieldT{" +
-<<<<<<< HEAD
-        "uuid=" + uuid +
-        ", cinemaId=" + cinemaId +
-        ", filmId=" + filmId +
-        ", beginTime=" + beginTime +
-        ", endTime=" + endTime +
-        ", hallId=" + hallId +
-        ", hallName=" + hallName +
-        ", price=" + price +
-        "}";
-=======
                 "uuid=" + fieldId +
                 ", cinemaId=" + cinemaId +
                 ", filmId=" + filmId +
@@ -197,6 +158,5 @@ public class MtimeFieldT extends Model<MtimeFieldT> {
                 ", price=" + price +
                 ", language='" + language + '\'' +
                 '}';
->>>>>>> f2e93abc6342909d36680097ffe9aafce752e28e
     }
 }

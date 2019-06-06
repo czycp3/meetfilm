@@ -3,9 +3,8 @@
 <mapper namespace="com.stylefeng.guns.rest.modular.cinema.dao.MtimeCinemaTMapper">
 
     <!-- 通用查询映射结果 -->
-<<<<<<< HEAD
     <resultMap id="BaseResultMap" type="com.stylefeng.guns.rest.modular.cinema.bean.MtimeCinemaT">
-        <id column="UUID" property="uuid" />
+        <id column="UUID" property="cinemaId" />
         <result column="cinema_name" property="cinemaName" />
         <result column="cinema_phone" property="cinemaPhone" />
         <result column="brand_id" property="brandId" />
@@ -69,7 +68,7 @@
         select UUID hallTypeId,show_name hallTypeName from mtime_hall_dict_t where UUID=#{hallTypeId}
     </select>
 
-=======
+
     <resultMap id="CinemaResultMap" type="com.stylefeng.guns.rest.modular.cinema.bean.MtimeCinemaT">
         <id column="UUID" property="cinemaId"/>
         <result column="cinema_name" property="cinemaName"/>
@@ -139,5 +138,4 @@
     mtime_cinema_t mct
     where uuid = #{cinemaId}
     </select>
->>>>>>> f2e93abc6342909d36680097ffe9aafce752e28e
 </mapper>

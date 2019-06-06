@@ -1,6 +1,5 @@
 package com.stylefeng.guns.rest.modular.cinema.bean;
 
-<<<<<<< HEAD
 import java.io.Serializable;
 import java.util.List;
 
@@ -14,6 +13,11 @@ public class Data implements Serializable {
     List<MtimeBrandDictT> mtimeBrandDictTList;
     List<MtimeAreaDictT> mtimeAreaDictTList;
     List<MtimeHallDictT> mtimeHallDictTList;
+
+    List<MtimeHallFilmInfoT> filmList;
+    MtimeCinemaT cinemaInfo;
+    MtimeHallFilmInfoT filmInfo;
+    MtimeHallDictT hallInfo;
 
     public List<MtimeCinemaT> getCinemas() {
         return cinemas;
@@ -47,22 +51,24 @@ public class Data implements Serializable {
         this.mtimeHallDictTList = mtimeHallDictTList;
     }
 
-
-
     public Data() {
     }
 
+    public List<MtimeHallFilmInfoT> getFilmList() {
+        return filmList;
+    }
 
-=======
+    public void setFilmList(List<MtimeHallFilmInfoT> filmList) {
+        this.filmList = filmList;
+    }
 
-import java.io.Serializable;
-import java.util.List;
+    public MtimeCinemaT getCinemaInfo() {
+        return cinemaInfo;
+    }
 
-public class Data implements Serializable {
-    List<MtimeHallFilmInfoT> filmList;
-    MtimeCinemaT cinemaInfo;
-    MtimeHallFilmInfoT filmInfo;
-    MtimeHallDictT hallInfo;
+    public void setCinemaInfo(MtimeCinemaT cinemaInfo) {
+        this.cinemaInfo = cinemaInfo;
+    }
 
     public MtimeHallFilmInfoT getFilmInfo() {
         return filmInfo;
@@ -79,31 +85,4 @@ public class Data implements Serializable {
     public void setHallInfo(MtimeHallDictT hallInfo) {
         this.hallInfo = hallInfo;
     }
-
-    public MtimeCinemaT getCinemaInfo() {
-        return cinemaInfo;
-    }
-
-    public void setCinemaInfo(MtimeCinemaT cinemaInfo) {
-        this.cinemaInfo = cinemaInfo;
-    }
-
-    public List<MtimeHallFilmInfoT> getFilmList() {
-        return filmList;
-    }
-
-    public void setFilmList(List<MtimeHallFilmInfoT> filmList) {
-        this.filmList = filmList;
-    }
-
-    @Override
-    public String toString() {
-        return "Data{" +
-                "cinemaInfo=" + cinemaInfo +
-                ", filmList=" + filmList +
-                ", filmInfo=" + filmInfo +
-                ", hallInfo=" + hallInfo +
-                '}';
-    }
->>>>>>> f2e93abc6342909d36680097ffe9aafce752e28e
 }

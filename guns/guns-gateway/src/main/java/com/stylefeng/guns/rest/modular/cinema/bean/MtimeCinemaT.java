@@ -1,19 +1,11 @@
 package com.stylefeng.guns.rest.modular.cinema.bean;
 
-<<<<<<< HEAD
-import com.baomidou.mybatisplus.enums.IdType;
-import com.baomidou.mybatisplus.annotations.TableId;
-import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.activerecord.Model;
+import com.baomidou.mybatisplus.annotations.TableField;
+import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.annotations.TableName;
+import com.baomidou.mybatisplus.enums.IdType;
 import com.fasterxml.jackson.annotation.JsonInclude;
-=======
-import com.baomidou.mybatisplus.activerecord.Model;
-import com.baomidou.mybatisplus.annotations.TableField;
-import com.baomidou.mybatisplus.annotations.TableId;
-import com.baomidou.mybatisplus.annotations.TableName;
-import com.baomidou.mybatisplus.enums.IdType;
->>>>>>> f2e93abc6342909d36680097ffe9aafce752e28e
 
 import java.io.Serializable;
 
@@ -26,10 +18,7 @@ import java.io.Serializable;
  * @since 2019-06-04
  */
 @TableName("mtime_cinema_t")
-<<<<<<< HEAD
 @JsonInclude(JsonInclude.Include.NON_NULL)
-=======
->>>>>>> f2e93abc6342909d36680097ffe9aafce752e28e
 public class MtimeCinemaT extends Model<MtimeCinemaT> {
 
     private static final long serialVersionUID = 1L;
@@ -38,11 +27,7 @@ public class MtimeCinemaT extends Model<MtimeCinemaT> {
      * 主键编号
      */
     @TableId(value = "UUID", type = IdType.AUTO)
-<<<<<<< HEAD
-    private Integer uuid;
-=======
     private Integer cinemaId;
->>>>>>> f2e93abc6342909d36680097ffe9aafce752e28e
     /**
      * 影院名称
      */
@@ -72,20 +57,12 @@ public class MtimeCinemaT extends Model<MtimeCinemaT> {
      * 影院图片地址
      */
     @TableField("img_address")
-<<<<<<< HEAD
-    private String imgAddress;
-=======
     private String imgUrl;
->>>>>>> f2e93abc6342909d36680097ffe9aafce752e28e
     /**
      * 影院地址
      */
     @TableField("cinema_address")
-<<<<<<< HEAD
     private String address;
-=======
-    private String cinemaAddress;
->>>>>>> f2e93abc6342909d36680097ffe9aafce752e28e
     /**
      * 最低票价
      */
@@ -93,14 +70,6 @@ public class MtimeCinemaT extends Model<MtimeCinemaT> {
     private Integer minimumPrice;
 
 
-<<<<<<< HEAD
-    public Integer getUuid() {
-        return uuid;
-    }
-
-    public void setUuid(Integer uuid) {
-        this.uuid = uuid;
-=======
     public Integer getCinemaId() {
         return cinemaId;
     }
@@ -115,7 +84,6 @@ public class MtimeCinemaT extends Model<MtimeCinemaT> {
 
     public void setImgUrl(String imgUrl) {
         this.imgUrl = imgUrl;
->>>>>>> f2e93abc6342909d36680097ffe9aafce752e28e
     }
 
     public String getCinemaName() {
@@ -158,14 +126,6 @@ public class MtimeCinemaT extends Model<MtimeCinemaT> {
         this.hallIds = hallIds;
     }
 
-<<<<<<< HEAD
-    public String getImgAddress() {
-        return imgAddress;
-    }
-
-    public void setImgAddress(String imgAddress) {
-        this.imgAddress = imgAddress;
-    }
 
     public String getAddress() {
         return address;
@@ -173,15 +133,6 @@ public class MtimeCinemaT extends Model<MtimeCinemaT> {
 
     public void setAddress(String address) {
         this.address = address;
-=======
-
-    public String getCinemaAddress() {
-        return cinemaAddress;
-    }
-
-    public void setCinemaAddress(String cinemaAddress) {
-        this.cinemaAddress = cinemaAddress;
->>>>>>> f2e93abc6342909d36680097ffe9aafce752e28e
     }
 
     public Integer getMinimumPrice() {
@@ -194,28 +145,12 @@ public class MtimeCinemaT extends Model<MtimeCinemaT> {
 
     @Override
     protected Serializable pkVal() {
-<<<<<<< HEAD
-        return this.uuid;
-=======
         return this.cinemaId;
->>>>>>> f2e93abc6342909d36680097ffe9aafce752e28e
     }
 
     @Override
     public String toString() {
         return "MtimeCinemaT{" +
-<<<<<<< HEAD
-        "uuid=" + uuid +
-        ", cinemaName=" + cinemaName +
-        ", cinemaPhone=" + cinemaPhone +
-        ", brandId=" + brandId +
-        ", areaId=" + areaId +
-        ", hallIds=" + hallIds +
-        ", imgAddress=" + imgAddress +
-        ", address=" + address +
-        ", minimumPrice=" + minimumPrice +
-        "}";
-=======
                 "cinemaId=" + cinemaId +
                 ", cinemaName='" + cinemaName + '\'' +
                 ", cinemaPhone='" + cinemaPhone + '\'' +
@@ -223,9 +158,8 @@ public class MtimeCinemaT extends Model<MtimeCinemaT> {
                 ", areaId=" + areaId +
                 ", hallIds='" + hallIds + '\'' +
                 ", imgUrl='" + imgUrl + '\'' +
-                ", cinemaAddress='" + cinemaAddress + '\'' +
+                ", address='" + address + '\'' +
                 ", minimumPrice=" + minimumPrice +
                 '}';
->>>>>>> f2e93abc6342909d36680097ffe9aafce752e28e
     }
 }

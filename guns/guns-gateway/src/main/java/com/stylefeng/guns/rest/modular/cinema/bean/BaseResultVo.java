@@ -1,6 +1,5 @@
 package com.stylefeng.guns.rest.modular.cinema.bean;
 
-<<<<<<< HEAD
 import java.io.Serializable;
 
 /**
@@ -13,24 +12,21 @@ public class BaseResultVo implements Serializable {
     Data data;
     Integer nowPage;
     Integer totalPage;
-=======
 
-import java.io.Serializable;
-
-public class BaseResultVo implements Serializable {
-    private Integer status;
-    private Data data;
     private String imgPre;
     private String msg;
 
-    public String getMsg() {
-        return msg;
+    @Override
+    public String toString() {
+        return "BaseResultVo{" +
+                "status=" + status +
+                ", data=" + data +
+                ", nowPage=" + nowPage +
+                ", totalPage=" + totalPage +
+                ", imgPre='" + imgPre + '\'' +
+                ", msg='" + msg + '\'' +
+                '}';
     }
-
-    public void setMsg(String msg) {
-        this.msg = msg;
-    }
->>>>>>> f2e93abc6342909d36680097ffe9aafce752e28e
 
     public Integer getStatus() {
         return status;
@@ -48,7 +44,6 @@ public class BaseResultVo implements Serializable {
         this.data = data;
     }
 
-<<<<<<< HEAD
     public Integer getNowPage() {
         return nowPage;
     }
@@ -63,7 +58,8 @@ public class BaseResultVo implements Serializable {
 
     public void setTotalPage(Integer totalPage) {
         this.totalPage = totalPage;
-=======
+    }
+
     public String getImgPre() {
         return imgPre;
     }
@@ -72,13 +68,11 @@ public class BaseResultVo implements Serializable {
         this.imgPre = imgPre;
     }
 
-    @Override
-    public String toString() {
-        return "BaseResultVo{" +
-                "status='" + status + '\'' +
-                ", data=" + data +
-                ", imgPre='" + imgPre + '\'' +
-                '}';
->>>>>>> f2e93abc6342909d36680097ffe9aafce752e28e
+    public String getMsg() {
+        return msg;
+    }
+
+    public void setMsg(String msg) {
+        this.msg = msg;
     }
 }
