@@ -8,6 +8,9 @@ import com.stylefeng.guns.rest.modular.user.been.MtimeUserT;
  */
 public interface MtimeUserService {
 
-    //注册模块
+    //注册
     int register(MtimeUserT user);
+
+    //检查用户名是否重复
+    int check(MtimeUserT user);
 }

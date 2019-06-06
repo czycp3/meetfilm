@@ -27,4 +27,12 @@
         (#{user.username},#{user.password},#{user.email},#{user.phone},#{user.address})
     </insert>
 
+    <select id="selectByUsername" resultMap="BaseResultMap">
+        select
+        UUID,user_name,nick_name,user_sex,birthday,email,user_phone,address,head_url,biography,
+        life_state,begin_time,update_time
+        from mtime_user_t
+        where user_name = #{username}
+    </select>
+
 </mapper>
