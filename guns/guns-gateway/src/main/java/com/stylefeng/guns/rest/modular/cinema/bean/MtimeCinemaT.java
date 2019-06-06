@@ -63,6 +63,16 @@ public class MtimeCinemaT extends Model<MtimeCinemaT> {
      */
     @TableField("cinema_address")
     private String address;
+    private String cinemaAddress;
+
+    public String getCinemaAddress() {
+        return cinemaAddress;
+    }
+
+    public void setCinemaAddress(String cinemaAddress) {
+        this.cinemaAddress = cinemaAddress;
+    }
+
     /**
      * 最低票价
      */

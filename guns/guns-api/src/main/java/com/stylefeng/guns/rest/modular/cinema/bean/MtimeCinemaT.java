@@ -1,10 +1,10 @@
 package com.stylefeng.guns.rest.modular.cinema.bean;
 
-import com.baomidou.mybatisplus.enums.IdType;
-import com.baomidou.mybatisplus.annotations.TableId;
-import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.activerecord.Model;
+import com.baomidou.mybatisplus.annotations.TableField;
+import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.annotations.TableName;
+import com.baomidou.mybatisplus.enums.IdType;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 import java.io.Serializable;
@@ -63,6 +63,16 @@ public class MtimeCinemaT extends Model<MtimeCinemaT> {
      */
     @TableField("cinema_address")
     private String address;
+    private String cinemaAddress;
+
+    public String getCinemaAddress() {
+        return cinemaAddress;
+    }
+
+    public void setCinemaAddress(String cinemaAddress) {
+        this.cinemaAddress = cinemaAddress;
+    }
+
     /**
      * 最低票价
      */
