@@ -15,8 +15,7 @@ import com.stylefeng.guns.rest.modular.user.been.ResponseUtil;
 public class UserController {
     @Reference
     UserService userService;
-    @Reference
-    ResponseUtil responseUtil;
+
 
     @RequestMapping("/user/register")
     public Object register(MtimeUserT user){
@@ -24,11 +23,11 @@ public class UserController {
         int i = userService.register(user);
 
         if (i == 1){
-            return responseUtil.register(0,"注册成功");
+            return ResponseUtil.responseVo(0,"注册成功");
         }else if (i == 2){
-            return responseUtil.register(1,"用户已存在");
+            return ResponseUtil.responseVo(1,"用户已存在");
         }else {
-            return responseUtil.register(999,"用户已存在");
+            return ResponseUtil.responseVo(999,"系统出现异常，请联系管理员");
         }
 
 
