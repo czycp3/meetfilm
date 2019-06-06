@@ -11,9 +11,17 @@ public class RequestVo implements Serializable {
     String brandId;
     String hallType;
     String districtId;
-    String pageSize;
+    Integer pageSize;
     Integer nowPage;
     String areaId;
+
+    public Integer getPageSize() {
+        return pageSize;
+    }
+
+    public void setPageSize(Integer pageSize) {
+        this.pageSize = pageSize;
+    }
 
     @Override
     public String toString() {
@@ -50,13 +58,6 @@ public class RequestVo implements Serializable {
         this.districtId = districtId;
     }
 
-    public String getPageSize() {
-        return pageSize;
-    }
-
-    public void setPageSize(String pageSize) {
-        this.pageSize = pageSize;
-    }
 
     public Integer getNowPage() {
         return nowPage;

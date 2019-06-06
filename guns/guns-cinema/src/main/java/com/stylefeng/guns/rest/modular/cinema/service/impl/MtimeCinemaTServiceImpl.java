@@ -1,6 +1,7 @@
 package com.stylefeng.guns.rest.modular.cinema.service.impl;
 
 import com.alibaba.dubbo.config.annotation.Service;
+import com.stylefeng.guns.core.exception.ServiceException;
 import com.stylefeng.guns.rest.modular.cinema.bean.*;
 import com.stylefeng.guns.rest.modular.cinema.dao.MtimeCinemaTMapper;
 import com.stylefeng.guns.rest.modular.cinema.service.IMtimeCinemaTService;
@@ -28,15 +29,14 @@ public class MtimeCinemaTServiceImpl implements IMtimeCinemaTService {
 
     @Override
     public BaseResultVo selectCinemaListByCondition(RequestVo requestVo) {
-        /*if(requestVo.getPageSize()<1||requestVo.getNowPage()<1){
-            undo 抛异常，搜索的每页条数和当前页数不能小于1
-        }*/
-//        requestVo.setHallType("#"+requestVo.getHallType()+"#");
+        if(requestVo.getPageSize()<1||requestVo.getNowPage()<1){
+            throw new ServiceException( 1,"影院信息查询失败");
+        }
         List<MtimeCinemaT> mtimeCinemaTList = mtimeCinemaTMapper.selectCinemaListByCondition(requestVo);
         BaseResultVo baseResultVo = new BaseResultVo();
         Data data = new Data();
         data.setCinemas(mtimeCinemaTList);
-        int pageSize = Integer.parseInt(requestVo.getPageSize()==null?"12":requestVo.getPageSize());
+        int pageSize = requestVo.getPageSize()==null?12:requestVo.getPageSize();
         int totalPage = mtimeCinemaTList.size()/pageSize;
 
         baseResultVo.setTotalPage(totalPage);
@@ -48,14 +48,13 @@ public class MtimeCinemaTServiceImpl implements IMtimeCinemaTService {
     }
 
     @Override
-    public BaseResultVo selectCinemaMsgByCondition(RequestVo requestVo) {
+    public BaseResultVo selectCinemaMsgByCondition(RequestVo requestVo) throws ServiceException{
         List<MtimeCinemaT> cinemaTList = mtimeCinemaTMapper.selectCinemaMsgByCondition(requestVo);
-       /* if (data==null){
-            undo 抛出异常
-        }*/
-        ArrayList<MtimeBrandDictT> brandList = new ArrayList<>();
-        ArrayList<MtimeAreaDictT> areaList = new ArrayList<>();
-        ArrayList<MtimeHallDictT> hallTypeList = new ArrayList<>();
+
+        Data data = new Data();
+        List<MtimeBrandDictT> brandList =data.getMtimeBrandDictTList();
+        List<MtimeAreaDictT> areaList = data.getMtimeAreaDictTList();
+        List<MtimeHallDictT> hallTypeList = data.getMtimeHallDictTList() ;
         for (MtimeCinemaT cinema : cinemaTList) {
             MtimeBrandDictT brand = mtimeCinemaTMapper.selectBrandListById(cinema.getBrandId());
             MtimeAreaDictT area = mtimeCinemaTMapper.selectAreaListById(cinema.getAreaId());
@@ -64,15 +63,14 @@ public class MtimeCinemaTServiceImpl implements IMtimeCinemaTService {
 
             String substring = cinema.getHallIds().substring(1);
             String[] ids = substring.split("#");
-            /*if(ids==null||ids.length==0){
-                undo  抛出异常
-            }*/
+            if(ids==null||ids.length==0){
+                throw new ServiceException( 1,"影院信息查询失败");
+            }
             for (int i = 0; i < ids.length; i++) {
                 MtimeHallDictT hallType = mtimeCinemaTMapper.selectHallTypeListById(ids[i]);
                 hallTypeList.add(hallType);
             }
         }
-        Data data = new Data();
         data.setMtimeBrandDictTList(brandList);
         data.setMtimeAreaDictTList(areaList);
         data.setMtimeHallDictTList(hallTypeList);

@@ -1,6 +1,7 @@
 package com.stylefeng.guns.rest.modular.cinema.controller;
 
 import com.alibaba.dubbo.config.annotation.Reference;
+import com.stylefeng.guns.core.exception.ServiceException;
 import com.stylefeng.guns.rest.modular.cinema.bean.BaseResultVo;
 
 import com.stylefeng.guns.rest.modular.cinema.bean.RequestVo;
@@ -17,9 +18,6 @@ import org.springframework.web.bind.annotation.PostMapping;
  * @Version 1.0
  */
 
-
-
-
 @RestController
 @RequestMapping("/cinema")
 public class CinemaController {
@@ -29,13 +27,14 @@ public class CinemaController {
     IMtimeFieldTService iMtimeFieldTService;
 
     @GetMapping("/getCinemas")
-    public BaseResultVo getCinemas(RequestVo requestVo){
+    public BaseResultVo getCinemas(RequestVo requestVo) throws ServiceException {
+
         BaseResultVo baseResultVo = iMtimeCinemaTService.selectCinemaListByCondition(requestVo);
         return baseResultVo;
     }
 
     @GetMapping("/getCondition")
-    public BaseResultVo getCondition(RequestVo requestVo) {
+    public BaseResultVo getCondition(RequestVo requestVo) throws ServiceException{
         BaseResultVo baseResultVo = iMtimeCinemaTService.selectCinemaMsgByCondition(requestVo);
         return baseResultVo;
     }

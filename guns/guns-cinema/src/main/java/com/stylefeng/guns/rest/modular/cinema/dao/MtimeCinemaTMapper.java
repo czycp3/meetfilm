@@ -8,7 +8,6 @@ import org.apache.ibatis.annotations.Param;
 import java.util.List;
 
 
-import java.util.ArrayList;
 
 
 /**
@@ -32,7 +31,7 @@ public interface MtimeCinemaTMapper extends BaseMapper<MtimeCinemaT> {
 
     MtimeHallDictT selectHallTypeListById(@Param("hallTypeId") String hallTypeId);
 
-    ArrayList<MtimeHallFilmInfoT> selectDataFilmListByCinemaId(@Param("cinemaId") Integer i);
+    List<MtimeHallFilmInfoT> selectDataFilmListByCinemaId(@Param("cinemaId") Integer i);
 
     MtimeCinemaT selectDataCinemaInfoByCinemaId(@Param("cinemaId") Integer i);
 
