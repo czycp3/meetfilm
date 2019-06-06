@@ -1,6 +1,6 @@
 package com.stylefeng.guns.rest.modular.user;
 
-import com.stylefeng.guns.rest.modular.user.been.User;
+import com.stylefeng.guns.rest.modular.user.been.MtimeUserT;
 import com.stylefeng.guns.rest.modular.user.service.UserService;
 import jdk.nashorn.internal.ir.annotations.Reference;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,7 +19,7 @@ public class UserController {
     ResponseUtil responseUtil;
 
     @RequestMapping("/user/register")
-    public Object register(User user){
+    public Object register(MtimeUserT user){
 
         int i = userService.register(user);
 

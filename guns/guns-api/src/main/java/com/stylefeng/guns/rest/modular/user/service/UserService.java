@@ -1,6 +1,6 @@
 package com.stylefeng.guns.rest.modular.user.service;
 
-import com.stylefeng.guns.rest.modular.user.been.User;
+import com.stylefeng.guns.rest.modular.user.been.MtimeUserT;
 
 /**
  * @auther 芮狼Dan
@@ -9,5 +9,5 @@ import com.stylefeng.guns.rest.modular.user.been.User;
 public interface UserService {
 
     //注册模块
-    int register(User user);
+    int register(MtimeUserT user);
 }
