@@ -22,9 +22,9 @@
 
     <insert id="register">
         insert into mtime_user_t
-        user_name,user_pwd,email,user_phone,address
+        (user_name,user_pwd,email,user_phone,address)
         value
-        #{user.username},#{user.password},#{user.email},#{user.phone},#{user.address}
+        (#{user.username},#{user.password},#{user.email},#{user.phone},#{user.address})
     </insert>
 
 </mapper>

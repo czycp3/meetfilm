@@ -3,7 +3,7 @@ package com.stylefeng.guns.rest.modular.user.service.impl;
 import com.alibaba.dubbo.config.annotation.Service;
 import com.stylefeng.guns.rest.modular.user.been.MtimeUserT;
 import com.stylefeng.guns.rest.modular.user.mapper.MtimeUserTMapper;
-import com.stylefeng.guns.rest.modular.user.service.UserService;
+import com.stylefeng.guns.rest.modular.user.service.MtimeUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -11,26 +11,28 @@ import org.springframework.stereotype.Component;
  * @auther 芮狼Dan
  * @date 2019-06-05 20:31
  */
-@Service(interfaceClass = UserService.class)
+@Service(interfaceClass = MtimeUserService.class)
 @Component
-public class UserServiceImpl implements UserService{
+public class UserServiceImpl implements MtimeUserService {
     @Autowired
     MtimeUserTMapper mtimeUserTMapper;
 
+
     @Override
     public int register(MtimeUserT user) {
-        int i = 0;
+        MtimeUserT userT = mtimeUserTMapper.selectOne(user);
 
         try {
-            mtimeUserTMapper.register(user);
-            i = 1;
-        }catch (Exception e){
-            i = 2;
+            if (userT != null){
+                return 0;
+            }else {
+                return mtimeUserTMapper.insertAllColumn(user);
+            }
+        }catch (RuntimeException e){
+            return -1;
         }
 
-        return i;
     }
-
 
 
 
