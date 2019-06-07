@@ -73,9 +73,7 @@ public class FilmServiceImpl implements FilmService{
         int sortId = filmRequestVo.getSortId();
         int sourceId = filmRequestVo.getSourceId();
         int yearId = filmRequestVo.getYearId();
-        if (oldCatId != 99){
-            catId = "%#" + oldCatId +"#%";
-        }
+
         catId = oldCatId + "";
 
         //查询正在热映的影片

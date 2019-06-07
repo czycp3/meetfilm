@@ -34,7 +34,7 @@ public class FilmController {
     }
 
     @RequestMapping("/film/getConditionList")
-    public FilmConditionVo getConditionList(@RequestBody ConditionParam conditionParam) throws ServiceException {
+    public FilmConditionVo getConditionList( ConditionParam conditionParam) throws ServiceException {
         FilmConditionVo conditionVo = filmService.getConditionList(conditionParam);
         Logger logger = Logger.getLogger(this.getClass());
         logger.info(conditionVo);
