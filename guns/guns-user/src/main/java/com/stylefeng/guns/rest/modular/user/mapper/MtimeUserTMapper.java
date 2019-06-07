@@ -14,10 +14,30 @@ import org.apache.ibatis.annotations.Param;
  */
 public interface MtimeUserTMapper extends BaseMapper<MtimeUserT> {
 
-    //查询用户名是否重复
+
+
+    /**
+     * 根据用户名查询用户信息
+     * @param username
+     * @return
+     */
     MtimeUserT selectByUsername(@Param("username") String username);
 
-    //注册
+    /**
+     * 注册
+     * @param user
+     * @return
+     */
     int register(@Param("user") MtimeUserT user);
+
+    /**
+     * 根据用户名查找密码
+     * @param username
+     * @return
+     */
+    MtimeUserT selectPswByUsername(String username);
+
+
+
 
 }

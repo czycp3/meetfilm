@@ -1,7 +1,6 @@
 package com.stylefeng.guns.rest.modular.user.service.impl;
 
 import com.alibaba.dubbo.config.annotation.Service;
-import com.stylefeng.guns.core.util.MD5Util;
 import com.stylefeng.guns.rest.modular.user.been.MtimeUserT;
 import com.stylefeng.guns.rest.modular.user.mapper.MtimeUserTMapper;
 import com.stylefeng.guns.rest.modular.user.service.MtimeUserService;
@@ -63,6 +62,16 @@ public class UserServiceImpl implements MtimeUserService {
             return -1;
         }
 
+    }
+
+    /**
+     * 根据用户名查找密码
+     * @param username
+     * @return
+     */
+    @Override
+    public MtimeUserT selectPswByUsername(String username) {
+        return mtimeUserTMapper.selectPswByUsername(username);
     }
 
 

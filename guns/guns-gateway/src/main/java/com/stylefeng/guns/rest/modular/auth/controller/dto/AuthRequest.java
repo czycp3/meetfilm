@@ -10,11 +10,11 @@ import com.stylefeng.guns.rest.modular.auth.validator.dto.Credence;
  */
 public class AuthRequest implements Credence {
 
-    private String userName;
+    private String username;
     private String password;
 
     public void setUserName(String userName) {
-        this.userName = userName;
+        this.username = userName;
     }
 
     public String getPassword() {
@@ -26,12 +26,12 @@ public class AuthRequest implements Credence {
     }
 
     public String getUserName() {
-        return userName;
+        return username;
     }
 
     @Override
     public String getCredenceName() {
-        return this.userName;
+        return this.username;
     }
 
     @Override
