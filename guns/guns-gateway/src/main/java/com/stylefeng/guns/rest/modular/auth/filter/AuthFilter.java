@@ -42,7 +42,8 @@ public class AuthFilter extends OncePerRequestFilter {
             chain.doFilter(request, response);
             return;
         }
-        final String authToken = request.getHeader("Authorization");
+        String authToken = request.getHeader("Authorization");
+        authToken = authToken.substring(7,authToken.length());
 
         if (authToken != null) {
 

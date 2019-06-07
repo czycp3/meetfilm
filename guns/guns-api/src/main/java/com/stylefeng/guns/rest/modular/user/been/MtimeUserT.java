@@ -81,12 +81,12 @@ public class MtimeUserT extends Model<MtimeUserT> {
      * 创建时间
      */
     @TableField("begin_time")
-    private long createTime;
+    private Long createTime;
     /**
      * 修改时间
      */
     @TableField("update_time")
-    private long updateTime;
+    private Long updateTime;
 
 
     public static long getSerialVersionUID() {
@@ -189,19 +189,19 @@ public class MtimeUserT extends Model<MtimeUserT> {
         this.lifeState = lifeState;
     }
 
-    public long getCreateTime() {
+    public Long getCreateTime() {
         return createTime;
     }
 
-    public void setCreateTime(long createTime) {
+    public void setCreateTime(Long createTime) {
         this.createTime = createTime;
     }
 
-    public long getUpdateTime() {
+    public Long getUpdateTime() {
         return updateTime;
     }
 
-    public void setUpdateTime(long updateTime) {
+    public void setUpdateTime(Long updateTime) {
         this.updateTime = updateTime;
     }
 

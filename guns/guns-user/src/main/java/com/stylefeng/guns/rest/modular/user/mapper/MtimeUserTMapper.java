@@ -37,7 +37,17 @@ public interface MtimeUserTMapper extends BaseMapper<MtimeUserT> {
      */
     MtimeUserT selectPswByUsername(String username);
 
+    /**
+     * 修改用户信息
+     * @param user
+     * @return
+     */
+    int updateUserInfo(@Param("user") MtimeUserT user);
 
-
-
+    /**
+     * 根据uuid查找用户信息
+     * @param uuid
+     * @return
+     */
+    MtimeUserT getUserInfoByUuid(@Param("uuid") Integer uuid);
 }

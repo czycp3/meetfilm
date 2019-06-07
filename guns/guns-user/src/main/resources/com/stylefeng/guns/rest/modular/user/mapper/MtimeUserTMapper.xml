@@ -16,8 +16,8 @@
         <result column="head_url" property="headAddress" />
         <result column="biography" property="biography" />
         <result column="life_state" property="lifeState" />
-        <result column="begin_time" property="createTime" />
-        <result column="update_time" property="updateTime" />
+        <result column="begin_time" property="createTime" typeHandler="com.stylefeng.guns.rest.modular.user.handler.DataToLongB"/>
+        <result column="update_time" property="updateTime" typeHandler="com.stylefeng.guns.rest.modular.user.handler.DataToLongU"/>
     </resultMap>
 
     <insert id="register">
@@ -42,5 +42,29 @@
         where user_name = #{username}
     </select>
 
+
+
+    <select id="getUserInfoByUuid" resultMap="BaseResultMap">
+        select
+        UUID,user_name,nick_name,user_sex,birthday,email,user_phone,address,head_url,biography,
+        life_state,begin_time,update_time
+        from mtime_user_t
+        where UUID = #{uuid}
+    </select>
+
+
+    <update id="updateUserInfo">
+        update mtime_user_t
+        set nick_name = #{user.nickname},
+            user_sex = #{user.sex},
+            birthday = #{user.birthday},
+            email = #{user.email},
+            user_phone = #{user.phone},
+            address = #{user.address},
+            biography = #{user.biography},
+            life_state = #{user.lifeState}
+        where
+            uuid = #{user.uuid}
+    </update>
 
 </mapper>

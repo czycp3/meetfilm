@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.PostMapping;
  */
 
 @RestController
-@RequestMapping("/cinema")
+@RequestMapping
 public class CinemaController {
     @Reference(check = false)
     IMtimeCinemaTService iMtimeCinemaTService;

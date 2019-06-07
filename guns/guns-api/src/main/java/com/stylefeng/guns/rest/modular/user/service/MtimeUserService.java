@@ -30,7 +30,25 @@ public interface MtimeUserService {
      */
     MtimeUserT selectPswByUsername(String username);
 
+    /**
+     * 根据用户名查询信息
+     * @param username
+     * @return
+     */
+    MtimeUserT getUserInfoByUsername(String username);
+
+    /**
+     * 修改用户信息
+     * @param user
+     * @return
+     */
+    int updateUserInfo(MtimeUserT user);
 
 
-
+    /**
+     * 根据uuid查询信息
+     * @param uuid
+     * @return
+     */
+    MtimeUserT getUserInfoByUuid(Integer uuid);
 }
