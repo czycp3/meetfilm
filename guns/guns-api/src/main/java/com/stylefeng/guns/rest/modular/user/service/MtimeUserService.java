@@ -8,6 +8,29 @@ import com.stylefeng.guns.rest.modular.user.been.MtimeUserT;
  */
 public interface MtimeUserService {
 
-    //注册模块
+    /**
+     * 注册
+     * @param user
+     * @return
+     */
     int register(MtimeUserT user);
+
+
+    /**
+     * 检查用户名是否重复
+     * @param user
+     * @return
+     */
+    int check(MtimeUserT user);
+
+    /**
+     * 根据用户名查找密码
+     * @param username
+     * @return
+     */
+    MtimeUserT selectPswByUsername(String username);
+
+
+
+
 }

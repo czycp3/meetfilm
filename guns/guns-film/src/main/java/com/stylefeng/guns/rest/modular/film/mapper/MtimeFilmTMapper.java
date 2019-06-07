@@ -29,21 +29,21 @@ public interface MtimeFilmTMapper extends BaseMapper<MtimeFilmT> {
      * @param catId 分类ID
      * @return List<Category>
      */
-    List<Category> queryFilmByCat(String catId);
+    List<Category> queryFilmByCat(@Param("catId") String catId);
 
     /**
      * 按片源ID查询
      * @param sourceId 片源ID
      * @return List<Source>
      */
-    List<Source> queryFilmBySource(String sourceId);
+    List<Source> queryFilmBySource(@Param("sourceId") String sourceId);
 
     /**
      * 按年代ID查询
      * @param yearId 年代ID
      * @return List<FilmYear>
      */
-    List<FilmYear> queryFilmByYear(String yearId);
+    List<FilmYear> queryFilmByYear(@Param("yearId") String yearId);
 
     /**
      * 查询正在热映的影片

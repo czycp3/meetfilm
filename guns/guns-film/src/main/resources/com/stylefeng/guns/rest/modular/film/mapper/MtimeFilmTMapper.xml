@@ -21,17 +21,26 @@
 
     <!--按分类ID查询-->
     <select id="queryFilmByCat" resultType="com.stylefeng.guns.rest.modular.film.bean.dictionary.Category">
-        select UUID catId,show_name catName from mtime_cat_dict_t where UUID = #{catId}
+        select UUID catId,show_name catName from mtime_cat_dict_t
+        <if test='catId != "99"'>
+          where UUID = #{catId}
+        </if>
     </select>
 
     <!--按片源ID查询-->
     <select id="queryFilmBySource" resultType="com.stylefeng.guns.rest.modular.film.bean.dictionary.Source">
-        select UUID sourceId,show_name sourceName from mtime_source_dict_t where UUID = #{sourceId}
+        select UUID sourceId,show_name sourceName from mtime_source_dict_t
+        <if test='sourceId != "99"'>
+          where UUID = #{sourceId}
+        </if>
     </select>
 
     <!--按年代ID查询-->
     <select id="queryFilmByYear" resultType="com.stylefeng.guns.rest.modular.film.bean.dictionary.FilmYear">
-        select UUID yearId,show_name yearName from mtime_year_dict_t where UUID = #{yearId}
+        select UUID yearId,show_name yearName from mtime_year_dict_t
+        <if test='yearId != "99"'>
+          where UUID = #{yearId}
+        </if>
     </select>
 
     <!--多条件查询映射结果-->
@@ -48,14 +57,15 @@
         select count(*)
         from mtime_film_t
         <where>
+            film_status = 1
             <if test='"99"!= catId'>
-                and film_cats like catId
+                and film_cats like CONCAT(CONCAT('%#',#{catId}),'%#')
             </if>
             <if test="sourceId != 99">
-                and film_source = sourceId
+                and film_source = #{sourceId}
             </if>
             <if test="yearId != 99">
-                and film_date = yearId
+                and film_date = #{yearId}
             </if>
         </where>
         order by
@@ -77,14 +87,15 @@
         select UUID,film_type,img_address,film_name,film_score
         from mtime_film_t
         <where>
+            film_status = 1
             <if test='"99"!= catId'>
-                and film_cats like catId
+                and film_cats like CONCAT(CONCAT('%#',#{catId}),'%#')
             </if>
             <if test="sourceId != 99">
-                and film_source = sourceId
+                and film_source = #{sourceId}
             </if>
             <if test="yearId != 99">
-                and film_date = yearId
+                and film_date = #{yearId}
             </if>
         </where>
         order by
@@ -105,14 +116,15 @@
         select count(*)
         from mtime_film_t
         <where>
+            film_status = 2
             <if test='"99"!= catId'>
-                and film_cats like catId
+                and film_cats like CONCAT(CONCAT('%#',#{catId}),'%#')
             </if>
             <if test="sourceId != 99">
-                and film_source = sourceId
+                and film_source = #{sourceId}
             </if>
             <if test="yearId != 99">
-                and film_date = yearId
+                and film_date = #{yearId}
             </if>
         </where>
         order by
@@ -134,14 +146,15 @@
         select UUID,film_type,img_address,film_name,film_score
         from mtime_film_t
         <where>
+            film_status = 2
             <if test='"99"!= catId'>
-                and film_cats like catId
+                and film_cats like CONCAT(CONCAT('%#',#{catId}),'%#')
             </if>
             <if test="sourceId != 99">
-                and film_source = sourceId
+                and film_source = #{sourceId}
             </if>
             <if test="yearId != 99">
-                and film_date = yearId
+                and film_date = #{yearId}
             </if>
         </where>
         order by
@@ -162,14 +175,15 @@
         select count(*)
         from mtime_film_t
         <where>
+            film_status = 3
             <if test='"99"!= catId'>
-                and film_cats like catId
+                and film_cats like CONCAT(CONCAT('%#',#{catId}),'%#')
             </if>
             <if test="sourceId != 99">
-                and film_source = sourceId
+                and film_source = #{sourceId}
             </if>
             <if test="yearId != 99">
-                and film_date = yearId
+                and film_date = #{yearId}
             </if>
         </where>
         order by
@@ -191,14 +205,15 @@
         select UUID,film_type,img_address,film_name,film_score
         from mtime_film_t
         <where>
+            film_status = 3
             <if test='"99"!= catId'>
-                and film_cats like #{catId}
+                and film_cats like CONCAT(CONCAT('%#',#{catId}),'%#')
             </if>
             <if test="sourceId != 99">
-                and film_source = sourceId
+                and film_source = #{sourceId}
             </if>
             <if test="yearId != 99">
-                and film_date = yearId
+                and film_date = #{yearId}
             </if>
         </where>
         order by
