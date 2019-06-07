@@ -147,7 +147,7 @@ public class FilmServiceImpl implements FilmService{
             filmInfoResultVo.setScoreNum(filmInfoResultVo.getScoreNum() + "万人评分");
             String totalBox = filmInfoResultVo.getTotalBox();
             double newtotalBox = Double.parseDouble(totalBox) / 10000;
-            filmInfoResultVo.setTotalBox(newtotalBox + "亿");
+            filmInfoResultVo.setTotalBox(newtotalBox + "万");
 
             //第二部分
             StringBuffer sb = new StringBuffer("");

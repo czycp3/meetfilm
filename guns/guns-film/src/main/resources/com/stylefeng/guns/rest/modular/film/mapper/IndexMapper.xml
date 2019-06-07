@@ -22,10 +22,11 @@
         <result column="film_score" property="filmScore"/>
         <result column="expect_num" property="expectNum"/>
         <result column="film_time" property="showTime"/>
+        <result column="film_box_office" property="boxNum"/>
     </resultMap>
     <!--查询主页状态为status的电影-->
     <select id="queryFilms" resultMap="filmMap">
-        select UUID,film_type,film_name,img_address,film_score,expect_num,film_time from mtime_film_t
+        select UUID,film_type,film_name,img_address,film_score,expect_num,film_time,film_box_office/10000 film_box_office from mtime_film_t
         <where>
             <if test="status != 0">
               film_status = #{status}

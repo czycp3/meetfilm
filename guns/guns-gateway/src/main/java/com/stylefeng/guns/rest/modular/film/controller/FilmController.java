@@ -14,7 +14,6 @@ import com.stylefeng.guns.rest.modular.film.bean.resultvo.FilmResponseVo;
 import com.stylefeng.guns.rest.modular.film.service.FilmService;
 import org.apache.log4j.Logger;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
