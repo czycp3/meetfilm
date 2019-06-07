@@ -42,8 +42,38 @@ public class FilmServiceImpl implements FilmService{
             String sourceId = conditionParam.getSourceId() == null ? "99" : conditionParam.getSourceId();
             String yearId = conditionParam.getYearId() == null ? "99" : conditionParam.getYearId();
             List<Category> catList = mtimeFilmTMapper.queryFilmByCat(catId);
+            if(catList.size() == 1){
+                catList.get(0).setIsActive(true);
+            }else {
+                for (Category category : catList) {
+                    if(category.getCatId() == 99) {
+                        category.setIsActive(true);
+                        break;
+                    }
+                }
+            }
             List<Source> sourceList = mtimeFilmTMapper.queryFilmBySource(sourceId);
+            if(sourceList.size() == 1){
+                sourceList.get(0).setIsActive(true);
+            }else {
+                for (Source source : sourceList) {
+                    if(source.getSourceId() == 99) {
+                        source.setIsActive(true);
+                        break;
+                    }
+                }
+            }
             List<FilmYear> yearList = mtimeFilmTMapper.queryFilmByYear(yearId);
+            if(yearList.size() == 1){
+                yearList.get(0).setIsActive(true);
+            }else {
+                for (FilmYear filmYear : yearList) {
+                    if(filmYear.getYearId() == 99) {
+                        filmYear.setIsActive(true);
+                        break;
+                    }
+                }
+            }
 
             conditionData.setCatInfo(catList);
             conditionData.setSourceInfo(sourceList);
