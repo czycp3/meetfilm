@@ -192,7 +192,7 @@
         from mtime_film_t
         <where>
             <if test='"99"!= catId'>
-                and film_cats like catId
+                and film_cats like #{catId}
             </if>
             <if test="sourceId != 99">
                 and film_source = sourceId
