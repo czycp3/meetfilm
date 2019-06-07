@@ -33,7 +33,7 @@ public class IndexServiceImpl implements IndexService {
     }
 
     @Override
-    public ResponseVo getIndex() throws ServiceException {
+    public ResponseVo getIndex() {
         try {
             //查询主页banner信息
             List<Banner> bannerList;

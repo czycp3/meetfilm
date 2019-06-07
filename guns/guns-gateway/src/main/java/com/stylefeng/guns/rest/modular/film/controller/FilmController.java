@@ -2,7 +2,7 @@ package com.stylefeng.guns.rest.modular.film.controller;
 
 import com.alibaba.dubbo.config.annotation.Reference;
 
-import com.stylefeng.guns.core.exception.ServiceException;
+
 import com.stylefeng.guns.rest.modular.film.bean.MtimeFilmT;
 
 
@@ -33,7 +33,7 @@ public class FilmController {
     }
 
     @RequestMapping("/film/getConditionList")
-    public FilmConditionVo getConditionList( ConditionParam conditionParam) throws ServiceException {
+    public FilmConditionVo getConditionList( ConditionParam conditionParam) {
         FilmConditionVo conditionVo = filmService.getConditionList(conditionParam);
         Logger logger = Logger.getLogger(this.getClass());
         logger.info(conditionVo);

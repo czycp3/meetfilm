@@ -35,7 +35,7 @@ public class FilmServiceImpl implements FilmService{
     }
 
     @Override
-    public FilmConditionVo getConditionList(ConditionParam conditionParam) throws ServiceException{
+    public FilmConditionVo getConditionList(ConditionParam conditionParam){
         FilmConditionVo filmConditionVo = new FilmConditionVo();
         ConditionData conditionData = new ConditionData();
         try {
