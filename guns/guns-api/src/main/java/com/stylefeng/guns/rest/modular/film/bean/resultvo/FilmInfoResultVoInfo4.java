@@ -5,6 +5,7 @@ import java.io.Serializable;
 public class FilmInfoResultVoInfo4 implements Serializable {
     private String biography;
     private FilmInfoResultVoInfo4Actors actors;
+    private FilmInfoResultVoImgVo imgVO;
 
     public String getBiography() {
         return biography;
@@ -20,5 +21,13 @@ public class FilmInfoResultVoInfo4 implements Serializable {
 
     public void setActors(FilmInfoResultVoInfo4Actors actors) {
         this.actors = actors;
+    }
+
+    public FilmInfoResultVoImgVo getImgVO() {
+        return imgVO;
+    }
+
+    public void setImgVO(FilmInfoResultVoImgVo imgVO) {
+        this.imgVO = imgVO;
     }
 }
