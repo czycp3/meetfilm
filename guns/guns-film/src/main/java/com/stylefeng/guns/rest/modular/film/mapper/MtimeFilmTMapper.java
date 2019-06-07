@@ -6,6 +6,7 @@ import com.stylefeng.guns.rest.modular.film.bean.dictionary.Category;
 import com.stylefeng.guns.rest.modular.film.bean.dictionary.FilmYear;
 import com.stylefeng.guns.rest.modular.film.bean.dictionary.Source;
 import com.stylefeng.guns.rest.modular.film.bean.film.Actor;
+import com.stylefeng.guns.rest.modular.film.bean.film.Director;
 import com.stylefeng.guns.rest.modular.film.bean.film.Film;
 import com.stylefeng.guns.rest.modular.film.bean.resultvo.FilmInfoResponseVo;
 import com.stylefeng.guns.rest.modular.film.bean.resultvo.FilmInfoResultVo;
@@ -151,7 +152,15 @@ public interface MtimeFilmTMapper extends BaseMapper<MtimeFilmT> {
      * 获取演员列表
      * @param name
      * @param searchType
-     * @return
+     * @return List<Actor>
      */
     List<Actor> getActors(@Param("name") String name,@Param("searchType") String searchType);
+
+    /**
+     * 获取导演信息
+     * @param name
+     * @param searchType
+     * @return Director
+     */
+    Director getDirector(@Param("name") String name, @Param("searchType") String searchType);
 }

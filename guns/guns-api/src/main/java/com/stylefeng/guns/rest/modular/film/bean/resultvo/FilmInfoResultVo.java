@@ -14,7 +14,7 @@ public class FilmInfoResultVo implements Serializable {
     private String info02;
     private String info03;
     private FilmInfoResultVoInfo4 info04;
-    private FilmInfoResultVoImgVo imgVO;
+    //private FilmInfoResultVoImgVo imgVO;
 
     public int getFilmId() {
         return filmId;
@@ -104,11 +104,11 @@ public class FilmInfoResultVo implements Serializable {
         this.info04 = info04;
     }
 
-    public FilmInfoResultVoImgVo getImgVO() {
-        return imgVO;
-    }
-
-    public void setImgVO(FilmInfoResultVoImgVo imgVO) {
-        this.imgVO = imgVO;
-    }
+//    public FilmInfoResultVoImgVo getImgVO() {
+//        return imgVO;
+//    }
+//
+//    public void setImgVO(FilmInfoResultVoImgVo imgVO) {
+//        this.imgVO = imgVO;
+//    }
 }

@@ -9,6 +9,7 @@ import com.stylefeng.guns.rest.modular.film.bean.dictionary.FilmYear;
 import com.stylefeng.guns.rest.modular.film.bean.dictionary.Source;
 import com.stylefeng.guns.rest.modular.film.bean.film.Actor;
 import com.stylefeng.guns.rest.modular.film.bean.film.ConditionParam;
+import com.stylefeng.guns.rest.modular.film.bean.film.Director;
 import com.stylefeng.guns.rest.modular.film.bean.film.Film;
 import com.stylefeng.guns.rest.modular.film.bean.resultvo.*;
 import com.stylefeng.guns.rest.modular.film.mapper.MtimeFilmTMapper;
@@ -128,7 +129,7 @@ public class FilmServiceImpl implements FilmService{
         filmResponseVo.setData(films);
         filmResponseVo.setTotalPage(totalPage);
         filmResponseVo.setStatus(0);
-        filmResponseVo.setImgPre("http://img.meetingshop.cn/");
+        filmResponseVo.setImgPre("https://czycp3.oss-cn-shanghai.aliyuncs.com/");
         filmResponseVo.setNowPage(nowPage);
         return filmResponseVo;
     }
@@ -185,12 +186,15 @@ public class FilmServiceImpl implements FilmService{
             filmInfoResultVoImgVo.setImg02(imgsplit[2]);
             filmInfoResultVoImgVo.setImg03(imgsplit[3]);
             filmInfoResultVoImgVo.setImg04(imgsplit[4]);
-            filmInfoResultVo.setImgVO(filmInfoResultVoImgVo);
 
             String s4 = mtimeFilmTMapper.getBiography(name, searchType);
             filmInfoResultVoInfo4.setBiography(s4);
+
             List<Actor> actors = mtimeFilmTMapper.getActors(name, searchType);
+            Director director = mtimeFilmTMapper.getDirector(name,searchType);
             filmInfoResultVoInfo4Actors.setActors(actors);
+            filmInfoResultVoInfo4Actors.setDirector(director);
+
             filmInfoResultVoInfo4.setActors(filmInfoResultVoInfo4Actors);
             filmInfoResultVoInfo4.setImgVO(filmInfoResultVoImgVo);
             filmInfoResultVo.setInfo04(filmInfoResultVoInfo4);
@@ -199,7 +203,7 @@ public class FilmServiceImpl implements FilmService{
         }
 
         filmInfoResponseVo.setStatus(0);
-        filmInfoResponseVo.setImgPre("http://img.meetingshop.cn/");
+        filmInfoResponseVo.setImgPre("https://czycp3.oss-cn-shanghai.aliyuncs.com/");
         filmInfoResponseVo.setData(filmInfoResultVo);
         return filmInfoResponseVo;
     }

@@ -377,4 +377,16 @@
         </where>
     </select>
 
+    <select id="getDirector" resultType="com.stylefeng.guns.rest.modular.film.bean.film.Director">
+         select director_name directorName,director_address imgAddress from mtime_director_t d,mtime_film_info_t fi,mtime_film_t f
+        <where>
+            <if test='searchType == "0" or searchType == null'>
+                d.UUID = fi.director_id and fi.film_id = f.UUID and fi.UUID = #{name}
+            </if>
+            <if test='searchType == "1"'>
+                d.UUID = fi.director_id and fi.film_id = f.UUID and f.film_name = #{name}
+            </if>
+        </where>
+    </select>
+
 </mapper>

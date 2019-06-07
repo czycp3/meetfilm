@@ -2,6 +2,9 @@ package com.stylefeng.guns.rest.modular.film.bean.film;
 
 import java.io.Serializable;
 
+/**
+ * @author CZY-Y7000P
+ */
 public class Director implements Serializable {
     private String imgAddress;
     private String directorName;
