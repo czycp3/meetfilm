@@ -33,7 +33,7 @@ import java.util.Map;
 
 @RestController
 public class MtimeUserController {
-    @Reference
+    @Reference(check = false)
     MtimeUserService mtimeUserService;
     @Autowired
     private JwtTokenUtil jwtTokenUtil;

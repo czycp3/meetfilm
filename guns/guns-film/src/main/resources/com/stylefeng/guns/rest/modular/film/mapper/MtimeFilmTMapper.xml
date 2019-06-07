@@ -21,17 +21,26 @@
 
     <!--按分类ID查询-->
     <select id="queryFilmByCat" resultType="com.stylefeng.guns.rest.modular.film.bean.dictionary.Category">
-        select UUID catId,show_name catName from mtime_cat_dict_t where UUID = #{catId}
+        select UUID catId,show_name catName from mtime_cat_dict_t
+        <if test='catId != "99"'>
+          where UUID = #{catId}
+        </if>
     </select>
 
     <!--按片源ID查询-->
     <select id="queryFilmBySource" resultType="com.stylefeng.guns.rest.modular.film.bean.dictionary.Source">
-        select UUID sourceId,show_name sourceName from mtime_source_dict_t where UUID = #{sourceId}
+        select UUID sourceId,show_name sourceName from mtime_source_dict_t
+        <if test='sourceId != "99"'>
+          where UUID = #{sourceId}
+        </if>
     </select>
 
     <!--按年代ID查询-->
     <select id="queryFilmByYear" resultType="com.stylefeng.guns.rest.modular.film.bean.dictionary.FilmYear">
-        select UUID yearId,show_name yearName from mtime_year_dict_t where UUID = #{yearId}
+        select UUID yearId,show_name yearName from mtime_year_dict_t
+        <if test='yearId != "99"'>
+          where UUID = #{yearId}
+        </if>
     </select>
 
     <!--多条件查询映射结果-->
@@ -48,14 +57,15 @@
         select count(*)
         from mtime_film_t
         <where>
+            film_status = 1
             <if test='"99"!= catId'>
-                and film_cats like catId
+                and film_cats like CONCAT(CONCAT('%#',#{catId}),'%#')
             </if>
             <if test="sourceId != 99">
-                and film_source = sourceId
+                and film_source = #{sourceId}
             </if>
             <if test="yearId != 99">
-                and film_date = yearId
+                and film_date = #{yearId}
             </if>
         </where>
         order by
@@ -77,14 +87,15 @@
         select UUID,film_type,img_address,film_name,film_score
         from mtime_film_t
         <where>
+            film_status = 1
             <if test='"99"!= catId'>
-                and film_cats like catId
+                and film_cats like CONCAT(CONCAT('%#',#{catId}),'%#')
             </if>
             <if test="sourceId != 99">
-                and film_source = sourceId
+                and film_source = #{sourceId}
             </if>
             <if test="yearId != 99">
-                and film_date = yearId
+                and film_date = #{yearId}
             </if>
         </where>
         order by
@@ -105,14 +116,15 @@
         select count(*)
         from mtime_film_t
         <where>
+            film_status = 2
             <if test='"99"!= catId'>
-                and film_cats like catId
+                and film_cats like CONCAT(CONCAT('%#',#{catId}),'%#')
             </if>
             <if test="sourceId != 99">
-                and film_source = sourceId
+                and film_source = #{sourceId}
             </if>
             <if test="yearId != 99">
-                and film_date = yearId
+                and film_date = #{yearId}
             </if>
         </where>
         order by
@@ -134,14 +146,15 @@
         select UUID,film_type,img_address,film_name,film_score
         from mtime_film_t
         <where>
+            film_status = 2
             <if test='"99"!= catId'>
-                and film_cats like catId
+                and film_cats like CONCAT(CONCAT('%#',#{catId}),'%#')
             </if>
             <if test="sourceId != 99">
-                and film_source = sourceId
+                and film_source = #{sourceId}
             </if>
             <if test="yearId != 99">
-                and film_date = yearId
+                and film_date = #{yearId}
             </if>
         </where>
         order by
@@ -162,14 +175,15 @@
         select count(*)
         from mtime_film_t
         <where>
+            film_status = 3
             <if test='"99"!= catId'>
-                and film_cats like catId
+                and film_cats like CONCAT(CONCAT('%#',#{catId}),'%#')
             </if>
             <if test="sourceId != 99">
-                and film_source = sourceId
+                and film_source = #{sourceId}
             </if>
             <if test="yearId != 99">
-                and film_date = yearId
+                and film_date = #{yearId}
             </if>
         </where>
         order by
@@ -191,14 +205,15 @@
         select UUID,film_type,img_address,film_name,film_score
         from mtime_film_t
         <where>
+            film_status = 3
             <if test='"99"!= catId'>
-                and film_cats like catId
+                and film_cats like CONCAT(CONCAT('%#',#{catId}),'%#')
             </if>
             <if test="sourceId != 99">
-                and film_source = sourceId
+                and film_source = #{sourceId}
             </if>
             <if test="yearId != 99">
-                and film_date = yearId
+                and film_date = #{yearId}
             </if>
         </where>
         order by
@@ -212,6 +227,154 @@
             film_score
         </if>
         limit #{pageSize} offset #{offset}
+    </select>
+
+    <resultMap id="filmInfoVo" type="com.stylefeng.guns.rest.modular.film.bean.resultvo.FilmInfoResultVo">
+        <result column="film_id" property="filmId"/>
+        <result column="film_Name" property="filmName"/>
+        <result column="film_en_name" property="filmEnName"/>
+        <result column="img_address" property="imgAddress"/>
+        <result column="film_score" property="score"/>
+        <result column="film_score_num" property="scoreNum"/>
+        <result column="film_box_office" property="totalBox"/>
+    </resultMap>
+
+    <!--获取影片详细信息第一部分-->
+    <select id="getFilmInfo" resultMap="filmInfoVo">
+        select
+          film_id,
+          film_Name,
+          film_en_name,
+          img_address,
+          f.film_score,
+          film_score_num,
+          film_box_office
+        from mtime_film_t f,mtime_film_info_t fi
+        <where>
+            <if test='searchType == "0" or searchType == null'>
+                and f.UUID = #{name} and f.UUID = fi.UUID
+            </if>
+            <if test='searchType == "1"'>
+                and f.film_name = #{name} and f.UUID = fi.UUID
+            </if>
+    </where>
+
+    </select>
+
+    <select id="getInfo1" resultType="java.lang.String">
+        select film_cats
+        from mtime_film_t f,mtime_film_info_t fi
+        <where>
+            <if test='searchType == "0" or searchType == null'>
+                and f.UUID = #{name} and f.UUID = fi.UUID
+            </if>
+            <if test='searchType == "1"'>
+                and f.film_name = #{name} and f.UUID = fi.UUID
+            </if>
+        </where>
+    </select>
+
+    <select id="getCatById" resultType="java.lang.String">
+       select show_name
+       from mtime_cat_dict_t
+       where uuid = #{catId}
+    </select>
+
+    <select id="getfilmImgs" resultType="java.lang.String">
+      SELECT film_imgs
+      FROM `mtime_film_info_t`
+        <where>
+            <if test='searchType == "0" or searchType == null'>
+                and UUID = #{name}
+            </if>
+            <if test='searchType == "1"'>
+                and film_name = #{name}
+            </if>
+        </where>
+    </select>
+
+    <select id="getSource" resultType="java.lang.String">
+        select show_name
+        from mtime_source_dict_t
+        where UUID = (
+          select film_source
+          from mtime_film_t
+            <where>
+                <if test='searchType == "0" or searchType == null'>
+                    and UUID = #{name}
+                </if>
+                <if test='searchType == "1"'>
+                    and film_name = #{name}
+                </if>
+            </where>
+          )
+    </select>
+    <select id="getTime" resultType="java.lang.Integer">
+        SELECT film_length
+        FROM `mtime_film_info_t`
+        <where>
+            <if test='searchType == "0" or searchType == null'>
+                and UUID = #{name}
+            </if>
+            <if test='searchType == "1"'>
+                and film_name = #{name}
+            </if>
+        </where>
+    </select>
+
+    <select id="getFilmTime" resultType="java.lang.String">
+        select film_time
+        from mtime_film_t
+        <where>
+            <if test='searchType == "0" or searchType == null'>
+                and UUID = #{name}
+            </if>
+            <if test='searchType == "1"'>
+                and film_name = #{name}
+            </if>
+        </where>
+    </select>
+
+    <select id="getBiography" resultType="java.lang.String">
+        <if test='searchType == "0" or searchType == null'>
+            select biography
+            from mtime_film_info_t
+            where UUID = #{name}
+        </if>
+        <if test='searchType == "1"'>
+            select biography
+            from mtime_film_info_t
+            where UUID = (
+              select UUID
+              from mtime_film_t
+              where film_name = #{name}
+              )
+        </if>
+    </select>
+
+    <!--演员映射结果-->
+    <resultMap id="ActorResultMap" type="com.stylefeng.guns.rest.modular.film.bean.film.Actor">
+        <result column="actor_img" property="imgAddress"/>
+        <result column="actor_name" property="directorName"/>
+        <result column="role_name" property="roleName"/>
+    </resultMap>
+
+    <select id="getActors" resultMap="ActorResultMap">
+        SELECT actor_img,actor_name,role_name
+        FROM mtime_actor_t f,mtime_film_actor_t a
+        <where>
+            <if test='searchType == "0" or searchType == null'>
+                and f.UUID = a.actor_id and a.film_id = #{name}
+            </if>
+            <if test='searchType == "1"'>
+                and f.UUID = a.actor_id
+                and a.film_id = (
+                    select UUID
+                    from mtime_film_t
+                    where film_name = #{name}
+                )
+            </if>
+        </where>
     </select>
 
 </mapper>

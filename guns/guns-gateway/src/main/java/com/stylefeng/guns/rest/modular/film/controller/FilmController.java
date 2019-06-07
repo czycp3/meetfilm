@@ -34,7 +34,7 @@ public class FilmController {
     }
 
     @RequestMapping("/film/getConditionList")
-    public FilmConditionVo getConditionList(@RequestBody ConditionParam conditionParam) throws ServiceException {
+    public FilmConditionVo getConditionList( ConditionParam conditionParam) throws ServiceException {
         FilmConditionVo conditionVo = filmService.getConditionList(conditionParam);
         Logger logger = Logger.getLogger(this.getClass());
         logger.info(conditionVo);
@@ -49,9 +49,9 @@ public class FilmController {
     }
 
     //影片详情查询
-    @RequestMapping("/film/films/{searchType}")
-    public FilmInfoResponseVo getFilmInfo(@PathVariable("searchType") int searchType){
-        FilmInfoResponseVo filmInfoResponseVo = filmService.getFilmInfo(searchType);
+    @RequestMapping("/film/films/{name}")
+    public FilmInfoResponseVo getFilmInfo(@PathVariable("name") String name,String searchType ){
+        FilmInfoResponseVo filmInfoResponseVo = filmService.getFilmInfo(name,searchType);
         return filmInfoResponseVo;
     }
 }
