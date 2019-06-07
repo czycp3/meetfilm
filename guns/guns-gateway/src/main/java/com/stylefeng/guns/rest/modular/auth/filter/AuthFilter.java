@@ -10,6 +10,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.filter.OncePerRequestFilter;
+import redis.clients.jedis.Jedis;
 
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
@@ -35,14 +36,15 @@ public class AuthFilter extends OncePerRequestFilter {
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain) throws IOException, ServletException {
-        if (request.getServletPath().equals("/" + jwtProperties.getAuthPath())) {
+        String url = request.getRequestURI();
+
+        if ( (url.indexOf("/auth")!= -1) ||(url.indexOf("/user/register") != -1) || (url.indexOf("/user/check") != -1)) {
             chain.doFilter(request, response);
             return;
         }
-        final String requestHeader = request.getHeader(jwtProperties.getHeader());
-        String authToken = null;
-        if (requestHeader != null && requestHeader.startsWith("Bearer ")) {
-            authToken = requestHeader.substring(7);
+        final String authToken = request.getHeader("Authorization");
+
+        if (authToken != null) {
 
             //验证token是否过期,包含了验证jwt是否正确
             try {
@@ -50,6 +52,17 @@ public class AuthFilter extends OncePerRequestFilter {
                 if (flag) {
                     RenderUtil.renderJson(response, new ErrorTip(BizExceptionEnum.TOKEN_EXPIRED.getCode(), BizExceptionEnum.TOKEN_EXPIRED.getMessage()));
                     return;
+                }else {
+                    String username = jwtTokenUtil.getUsernameFromToken(authToken);
+                    Jedis jedis = new Jedis();
+                    String token = jedis.get(username);
+                    if (authToken.equals(token)){
+                        chain.doFilter(request, response);
+                        return;
+                    }else{
+                        RenderUtil.renderJson(response, new ErrorTip(BizExceptionEnum.TOKEN_ERROR.getCode(), BizExceptionEnum.TOKEN_ERROR.getMessage()));
+                        return;
+                    }
                 }
             } catch (JwtException e) {
                 //有异常就是token解析失败
@@ -61,6 +74,6 @@ public class AuthFilter extends OncePerRequestFilter {
             RenderUtil.renderJson(response, new ErrorTip(BizExceptionEnum.TOKEN_ERROR.getCode(), BizExceptionEnum.TOKEN_ERROR.getMessage()));
             return;
         }
-        chain.doFilter(request, response);
+
     }
 }

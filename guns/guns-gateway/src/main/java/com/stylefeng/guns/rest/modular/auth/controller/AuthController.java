@@ -6,12 +6,15 @@ import com.stylefeng.guns.rest.modular.auth.controller.dto.AuthRequest;
 import com.stylefeng.guns.rest.modular.auth.controller.dto.AuthResponse;
 import com.stylefeng.guns.rest.modular.auth.util.JwtTokenUtil;
 import com.stylefeng.guns.rest.modular.auth.validator.IReqValidator;
+import com.stylefeng.guns.rest.modular.user.been.ResponseUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * 请求验证的
@@ -28,7 +31,7 @@ public class AuthController {
     @Resource(name = "simpleValidator")
     private IReqValidator reqValidator;
 
-    @RequestMapping(value = "${jwt.auth-path}")
+    @RequestMapping(value = "nmsl")
     public ResponseEntity<?> createAuthenticationToken(AuthRequest authRequest) {
 
         boolean validate = reqValidator.validate(authRequest);
@@ -41,4 +44,5 @@ public class AuthController {
             throw new GunsException(BizExceptionEnum.AUTH_REQUEST_ERROR);
         }
     }
+
 }

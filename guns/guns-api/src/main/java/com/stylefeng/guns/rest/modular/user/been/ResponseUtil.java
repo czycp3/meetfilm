@@ -9,11 +9,19 @@ import java.util.Map;
  */
 public class ResponseUtil {
 
-    //注册的封装信息
+    //返回的封装信息（无data）
     public static Object responseVo(int status,String msg) {
         Map<String, Object> obj = new HashMap<String, Object>();
         obj.put("status", status);
         obj.put("msg", msg);
+        return obj;
+    }
+
+    //返回的封装信息
+    public static Object responseVo(int status,Object data) {
+        Map<String, Object> obj = new HashMap<String, Object>();
+        obj.put("status", status);
+        obj.put("data", data);
         return obj;
     }
 
