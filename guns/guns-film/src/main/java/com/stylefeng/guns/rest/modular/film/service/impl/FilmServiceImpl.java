@@ -7,6 +7,7 @@ import com.stylefeng.guns.rest.modular.film.bean.RequestVo.FilmRequestVo;
 import com.stylefeng.guns.rest.modular.film.bean.dictionary.Category;
 import com.stylefeng.guns.rest.modular.film.bean.dictionary.FilmYear;
 import com.stylefeng.guns.rest.modular.film.bean.dictionary.Source;
+import com.stylefeng.guns.rest.modular.film.bean.film.Actor;
 import com.stylefeng.guns.rest.modular.film.bean.film.ConditionParam;
 import com.stylefeng.guns.rest.modular.film.bean.film.Film;
 import com.stylefeng.guns.rest.modular.film.bean.resultvo.*;
@@ -102,30 +103,63 @@ public class FilmServiceImpl implements FilmService{
     }
 
     @Override
-    public FilmInfoResponseVo getFilmInfo(int searchType) {
+    public FilmInfoResponseVo getFilmInfo(String name,String searchType) {
         FilmInfoResponseVo filmInfoResponseVo = new FilmInfoResponseVo();
-        FilmInfoResultVo filmInfoResultVo = new FilmInfoResultVo();
+        FilmInfoResultVo filmInfoResultVo;
         FilmInfoResultVoInfo4 filmInfoResultVoInfo4 = new FilmInfoResultVoInfo4();
         FilmInfoResultVoInfo4Actors filmInfoResultVoInfo4Actors = new FilmInfoResultVoInfo4Actors();
         FilmInfoResultVoImgVo filmInfoResultVoImgVo = new FilmInfoResultVoImgVo();
 
-        filmInfoResultVoInfo4Actors.setActors(null);
-        filmInfoResultVoInfo4Actors.setDirector(null);
+        //第一部分
+        filmInfoResultVo = mtimeFilmTMapper.getFilmInfo(name,searchType);
+        filmInfoResultVo.setScoreNum(filmInfoResultVo.getScoreNum() + "万人评分");
+        String totalBox =filmInfoResultVo.getTotalBox();
+        Double newtotalBox = Double.parseDouble(totalBox) / 10000;
+        filmInfoResultVo.setTotalBox(String.valueOf(newtotalBox) + "亿");
 
+        //第二部分
+        StringBuffer sb = new StringBuffer("");
+        String cats = mtimeFilmTMapper.getInfo1(name,searchType);
+        String[] catsArr = cats.split("#");
+        for (int i = 1; i < catsArr.length; i++) {
+            Integer catId = Integer.valueOf(catsArr[i]);
+            String cat = mtimeFilmTMapper.getCatById(catId);
+            sb.append(cat);
+            while (i != catsArr.length - 1){
+                sb.append(",");
+                break;
+            }
+        }
+        filmInfoResultVo.setInfo01(String.valueOf(sb));
+
+        StringBuffer sb2 = new StringBuffer("");
+        String s2 = mtimeFilmTMapper.getSource(name,searchType);
+        sb2.append(s2 + ",");
+        int timeLength = mtimeFilmTMapper.getTime(name,searchType);
+        sb2.append(timeLength + "分钟");
+        filmInfoResultVo.setInfo02(String.valueOf(sb2));
+
+        StringBuffer sb3 = new StringBuffer("");
+        String s3 = mtimeFilmTMapper.getFilmTime(name,searchType);
+        s3.substring(0,11);
+        sb3.append(s3);
+        sb3.append(" " + s2 + "上映");
+        filmInfoResultVo.setInfo03(String.valueOf(sb3));
+
+        String s4 = mtimeFilmTMapper.getBiography(name,searchType);
+        filmInfoResultVoInfo4.setBiography(s4);
+        List<Actor> actors = mtimeFilmTMapper.getActors(name,searchType);
+        filmInfoResultVoInfo4Actors.setActors(actors);
         filmInfoResultVoInfo4.setActors(filmInfoResultVoInfo4Actors);
-        filmInfoResultVoInfo4.setBiography(null);
-
-        filmInfoResultVo.setFilmName(null);
-        filmInfoResultVo.setFilmEnName(null);
-        filmInfoResultVo.setImgAddress(null);
-        filmInfoResultVo.setScore(null);
-        filmInfoResultVo.setScoreNum(null);
-        filmInfoResultVo.setTotalBox(null);
-        filmInfoResultVo.setInfo01(null);
-        filmInfoResultVo.setInfo02(null);
-        filmInfoResultVo.setInfo03(null);
         filmInfoResultVo.setInfo04(filmInfoResultVoInfo4);
-        filmInfoResultVo.setFilmId(0);
+
+        String imgStr = mtimeFilmTMapper.getfilmImgs(name,searchType);
+        String[] imgsplit = imgStr.split(",");
+        filmInfoResultVoImgVo.setMainImg(imgsplit[0]);
+        filmInfoResultVoImgVo.setImg01(imgsplit[1]);
+        filmInfoResultVoImgVo.setImg02(imgsplit[2]);
+        filmInfoResultVoImgVo.setImg03(imgsplit[3]);
+        filmInfoResultVoImgVo.setImg04(imgsplit[4]);
         filmInfoResultVo.setImgVo(filmInfoResultVoImgVo);
 
         filmInfoResponseVo.setStatus(0);

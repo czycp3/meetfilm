@@ -39,5 +39,5 @@ public interface FilmService {
      * @param searchType
      * @return
      */
-    FilmInfoResponseVo getFilmInfo(int searchType);
+    FilmInfoResponseVo getFilmInfo(String name,String searchType);
 }
