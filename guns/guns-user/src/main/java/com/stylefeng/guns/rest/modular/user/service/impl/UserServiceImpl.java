@@ -19,6 +19,7 @@ public class UserServiceImpl implements MtimeUserService {
 
     /**
      * 注册
+     *
      * @param user
      * @return
      */
@@ -30,13 +31,13 @@ public class UserServiceImpl implements MtimeUserService {
         MtimeUserT userT = mtimeUserTMapper.selectByUsername(user.getUsername());
 
         try {
-            if (userT != null){
+            if (userT != null) {
                 return 0;
-            }else {
+            } else {
                 //return mtimeUserTMapper.insertAllColumn(user);
                 return mtimeUserTMapper.register(user);
             }
-        }catch (RuntimeException e){
+        } catch (RuntimeException e) {
             return -1;
         }
 
@@ -44,6 +45,7 @@ public class UserServiceImpl implements MtimeUserService {
 
     /**
      * 验证用户名是否重复
+     *
      * @param user
      * @return
      */
@@ -51,14 +53,13 @@ public class UserServiceImpl implements MtimeUserService {
     public int check(MtimeUserT user) {
 
         try {
-            //MtimeUserT userT = mtimeUserTMapper.selectOne(user);
             MtimeUserT userT = mtimeUserTMapper.selectByUsername(user.getUsername());
-            if (userT == null){
+            if (userT == null) {
                 return 0;
-            }else{
+            } else {
                 return 1;
             }
-        } catch (RuntimeException e){
+        } catch (RuntimeException e) {
             return -1;
         }
 
@@ -66,12 +67,45 @@ public class UserServiceImpl implements MtimeUserService {
 
     /**
      * 根据用户名查找密码
+     *
      * @param username
      * @return
      */
     @Override
     public MtimeUserT selectPswByUsername(String username) {
         return mtimeUserTMapper.selectPswByUsername(username);
+    }
+
+
+    /**
+     * 根据用户名查询信息
+     *
+     * @param username
+     * @return
+     */
+    @Override
+    public MtimeUserT getUserInfoByUsername(String username) {
+        return mtimeUserTMapper.selectByUsername(username);
+    }
+
+    /**
+     * 修改用户信息
+     * @param user
+     * @return
+     */
+    @Override
+    public int updateUserInfo(MtimeUserT user) {
+        return mtimeUserTMapper.updateUserInfo(user);
+    }
+
+    /**
+     * 根据uuid查询用户信息
+     * @param uuid
+     * @return
+     */
+    @Override
+    public MtimeUserT getUserInfoByUuid(Integer uuid) {
+        return mtimeUserTMapper.getUserInfoByUuid(uuid);
     }
 
 

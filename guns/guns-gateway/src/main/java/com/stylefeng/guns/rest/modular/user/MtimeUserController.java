@@ -84,27 +84,27 @@ public class MtimeUserController {
 
     /**
      * 登陆
-     * @param username
+     * @param userName
      * @param password
      * @return
      */
     @RequestMapping("/auth")
-    public Object createAuthenticationToken(String username,String password) {
+    public Object createAuthenticationToken(String userName,String password) {
         Jedis jedis = new Jedis();
 
         try {
-            MtimeUserT userT = mtimeUserService.selectPswByUsername(username);
+            MtimeUserT userT = mtimeUserService.selectPswByUsername(userName);
             String psw = userT.getPassword();
             password = MD5Util.encrypt(password);
 
 
             if (psw.equals(password)) {
                 final String randomKey = jwtTokenUtil.getRandomKey();
-                final String token = jwtTokenUtil.generateToken(username, randomKey);
+                final String token = jwtTokenUtil.generateToken(userName, randomKey);
                 Map<String,String> data = new HashMap<>();
                 data.put("randomKey",randomKey);
                 data.put("token",token);
-                jedis.set(username,token);
+                jedis.set(userName,token);
 
                 return ResponseUtil.responseVo(0,data);
             } else {
@@ -117,17 +117,78 @@ public class MtimeUserController {
     }
 
 
-
-    @RequestMapping("/user/test")
+    /**
+     * 登出
+     * @param request
+     * @return
+     */
+    @RequestMapping("/user/logout")
     public Object test(HttpServletRequest request){
         String token = request.getHeader("Authorization");
+        token = token.substring(7,token.length());
         String username = jwtTokenUtil.getUsernameFromToken(token);
 
         Jedis jedis = new Jedis();
-        return ResponseUtil.responseVo(0,jedis.get(username));
+
+        try {
+            if (username == null || username.equals("")){
+                return ResponseUtil.responseVo(1,"退出失败，用户尚未登陆");
+            } else {
+                jedis.del(username);
+                return ResponseUtil.responseVo(0,"成功退出");
+            }
+        } catch (Exception e){
+            return ResponseUtil.responseVo(999,"系统出现异常，请联系管理员");
+        }
+
     }
 
 
+    /**
+     * 查询用户信息
+     * @param request
+     * @return
+     */
+    @RequestMapping("/user/getUserInfo")
+    public Object getUserInfo(HttpServletRequest request){
+        String token = request.getHeader("Authorization");
+        token = token.substring(7,token.length());
+        String username = jwtTokenUtil.getUsernameFromToken(token);
+
+        if (username == null || username.equals("")){
+            return ResponseUtil.responseVo(1,"查询失败，用户尚未登陆");
+        }else {
+            MtimeUserT userT = mtimeUserService.getUserInfoByUsername(username);
+            return ResponseUtil.responseVo(0,userT);
+        }
+
+    }
+
+    /**
+     * 修改用户信息
+     * @param user
+     * @return
+     */
+    @RequestMapping("/user/updateUserInfo")
+    public Object updateUserInfo(MtimeUserT user){
+
+
+        try {
+
+            int i = mtimeUserService.updateUserInfo(user);
+            if (i == 1){
+                MtimeUserT userT = mtimeUserService.getUserInfoByUuid(user.getUuid());
+                return ResponseUtil.responseVo(0,userT);
+            }else{
+                return ResponseUtil.responseVo(1,"用户信息修改失败");
+            }
+
+        }catch (Exception e){
+            return ResponseUtil.responseVo(999,"系统出现异常，请联系管理员");
+        }
+
+
+    }
 
 
 
