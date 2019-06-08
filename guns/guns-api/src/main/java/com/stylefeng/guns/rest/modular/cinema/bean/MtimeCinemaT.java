@@ -23,11 +23,21 @@ public class MtimeCinemaT extends Model<MtimeCinemaT> {
 
     private static final long serialVersionUID = 1L;
 
-    /**
+    /**`
      * 主键编号
      */
     @TableId(value = "UUID", type = IdType.AUTO)
     private Integer cinemaId;
+    private Integer uuid;
+
+    public Integer getUuid() {
+        return uuid;
+    }
+
+    public void setUuid(Integer uuid) {
+        this.uuid = uuid;
+    }
+
     /**
      * 影院名称
      */

@@ -8,7 +8,7 @@ import java.io.Serializable;
  * @Version 1.0
  */
 public class BaseResultVo implements Serializable {
-    Integer status;
+    Integer status = 0;
     Data data;
     Integer nowPage;
     Integer totalPage;
