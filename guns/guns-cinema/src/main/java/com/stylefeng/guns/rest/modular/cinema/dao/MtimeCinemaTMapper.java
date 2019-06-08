@@ -23,13 +23,11 @@ public interface MtimeCinemaTMapper extends BaseMapper<MtimeCinemaT> {
 
     List<MtimeCinemaT> selectCinemaListByCondition(@Param("requestVo") RequestVo requestVo);
 
-    List<MtimeCinemaT> selectCinemaMsgByCondition(@Param("requestVo") RequestVo requestVo);
+    List<MtimeBrandDictT> selectBrandListById(@Param("brandId") Integer brandId);
 
-    MtimeBrandDictT selectBrandListById(@Param("brandId") Integer brandId);
+    List<MtimeAreaDictT> selectAreaListById(@Param("areaId") Integer areaId);
 
-    MtimeAreaDictT selectAreaListById(@Param("areaId") Integer areaId);
-
-    MtimeHallDictT selectHallTypeListById(@Param("hallTypeId") String hallTypeId);
+    List<MtimeHallDictT> selectHalltypeListById(@Param("halltypeId") Integer hallTypeId);
 
     List<MtimeHallFilmInfoT> selectDataFilmListByCinemaId(@Param("cinemaId") Integer i);
 

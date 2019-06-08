@@ -8,12 +8,20 @@ import java.io.Serializable;
  * @Version 1.0
  */
 public class RequestVo implements Serializable {
-    String brandId;
-    String hallType;
-    String districtId;
-    String pageSize;
-    Integer nowPage;
-    String areaId;
+    Integer brandId =99;
+    Integer hallType =99;
+    Integer districtId=99;
+    Integer pageSize=12;
+    Integer nowPage=1;
+    Integer areaId=99;
+
+    public Integer getPageSize() {
+        return pageSize;
+    }
+
+    public void setPageSize(Integer pageSize) {
+        this.pageSize = pageSize;
+    }
 
     @Override
     public String toString() {
@@ -26,36 +34,28 @@ public class RequestVo implements Serializable {
                 '}';
     }
 
-    public String getBrandId() {
-        return brandId;
-    }
-
-    public void setBrandId(String brandId) {
+    public void setBrandId(Integer brandId) {
         this.brandId = brandId;
     }
 
-    public String getHallType() {
-        return hallType;
-    }
-
-    public void setHallType(String hallType) {
+    public void setHallType(Integer hallType) {
         this.hallType = hallType;
     }
 
-    public String getDistrictId() {
-        return districtId;
-    }
-
-    public void setDistrictId(String districtId) {
+    public void setDistrictId(Integer districtId) {
         this.districtId = districtId;
     }
 
-    public String getPageSize() {
-        return pageSize;
+    public Integer getBrandId() {
+        return brandId;
     }
 
-    public void setPageSize(String pageSize) {
-        this.pageSize = pageSize;
+    public Integer getHallType() {
+        return hallType;
+    }
+
+    public Integer getDistrictId() {
+        return districtId;
     }
 
     public Integer getNowPage() {
@@ -66,11 +66,11 @@ public class RequestVo implements Serializable {
         this.nowPage = nowPage;
     }
 
-    public String getAreaId() {
+    public Integer getAreaId() {
         return areaId;
     }
 
-    public void setAreaId(String areaId) {
+    public void setAreaId(Integer areaId) {
         this.areaId = areaId;
     }
 }

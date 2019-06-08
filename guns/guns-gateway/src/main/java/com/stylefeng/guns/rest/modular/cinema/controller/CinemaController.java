@@ -4,6 +4,7 @@ import com.alibaba.dubbo.config.annotation.Reference;
 import com.stylefeng.guns.core.exception.ServiceException;
 import com.stylefeng.guns.rest.modular.cinema.bean.BaseResultVo;
 
+import com.stylefeng.guns.rest.modular.cinema.bean.BaseVo;
 import com.stylefeng.guns.rest.modular.cinema.bean.RequestVo;
 import com.stylefeng.guns.rest.modular.cinema.service.IMtimeCinemaTService;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,7 +20,7 @@ import org.springframework.web.bind.annotation.PostMapping;
  */
 
 @RestController
-@RequestMapping
+@RequestMapping("/cinema")
 public class CinemaController {
     @Reference(check = false)
     IMtimeCinemaTService iMtimeCinemaTService;
@@ -27,10 +28,10 @@ public class CinemaController {
     IMtimeFieldTService iMtimeFieldTService;
 
     @GetMapping("/getCinemas")
-    public BaseResultVo getCinemas(RequestVo requestVo) throws ServiceException {
+    public BaseVo getCinemas(RequestVo requestVo) throws ServiceException {
 
-        BaseResultVo baseResultVo = iMtimeCinemaTService.selectCinemaListByCondition(requestVo);
-        return baseResultVo;
+        BaseVo baseVo = iMtimeCinemaTService.selectCinemaListByCondition(requestVo);
+        return baseVo;
     }
 
     @GetMapping("/getCondition")
@@ -39,7 +40,7 @@ public class CinemaController {
         return baseResultVo;
     }
 
-    @RequestMapping("/getFileds")
+    @RequestMapping("/getFields")
     public BaseResultVo  GetFileds(String cinemaId){
         BaseResultVo baseResultVo = iMtimeCinemaTService.GetFileds(cinemaId);
         return baseResultVo;

@@ -10,14 +10,26 @@ import java.util.List;
  */
 public class Data implements Serializable {
     List<MtimeCinemaT> cinemas;
-    List<MtimeBrandDictT> mtimeBrandDictTList;
-    List<MtimeAreaDictT> mtimeAreaDictTList;
-    List<MtimeHallDictT> mtimeHallDictTList;
+    List<MtimeCinemaT> CinemasData;
 
+    public List<MtimeCinemaT> getCinemasData() {
+        return CinemasData;
+    }
+
+    public void setCinemasData(List<MtimeCinemaT> cinemasData) {
+        CinemasData = cinemasData;
+    }
+
+    List<MtimeBrandDictT> brandList;
+    List<MtimeAreaDictT> areaList;
+    List<MtimeHallDictT> halltypeList;
     List<MtimeHallFilmInfoT> filmList;
     MtimeCinemaT cinemaInfo;
     MtimeHallFilmInfoT filmInfo;
     MtimeHallDictT hallInfo;
+
+    public Data() {
+    }
 
     public List<MtimeCinemaT> getCinemas() {
         return cinemas;
@@ -27,31 +39,28 @@ public class Data implements Serializable {
         this.cinemas = cinemas;
     }
 
-    public List<MtimeBrandDictT> getMtimeBrandDictTList() {
-        return mtimeBrandDictTList;
+    public List<MtimeBrandDictT> getBrandList() {
+        return brandList;
     }
 
-    public void setMtimeBrandDictTList(List<MtimeBrandDictT> mtimeBrandDictTList) {
-        this.mtimeBrandDictTList = mtimeBrandDictTList;
+    public void setBrandList(List<MtimeBrandDictT> brandList) {
+        this.brandList = brandList;
     }
 
-    public List<MtimeAreaDictT> getMtimeAreaDictTList() {
-        return mtimeAreaDictTList;
+    public List<MtimeAreaDictT> getAreaList() {
+        return areaList;
     }
 
-    public void setMtimeAreaDictTList(List<MtimeAreaDictT> mtimeAreaDictTList) {
-        this.mtimeAreaDictTList = mtimeAreaDictTList;
+    public void setAreaList(List<MtimeAreaDictT> areaList) {
+        this.areaList = areaList;
     }
 
-    public List<MtimeHallDictT> getMtimeHallDictTList() {
-        return mtimeHallDictTList;
+    public List<MtimeHallDictT> getHalltypeList() {
+        return halltypeList;
     }
 
-    public void setMtimeHallDictTList(List<MtimeHallDictT> mtimeHallDictTList) {
-        this.mtimeHallDictTList = mtimeHallDictTList;
-    }
-
-    public Data() {
+    public void setHalltypeList(List<MtimeHallDictT> halltypeList) {
+        this.halltypeList = halltypeList;
     }
 
     public List<MtimeHallFilmInfoT> getFilmList() {

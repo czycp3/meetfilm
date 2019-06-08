@@ -28,51 +28,34 @@ public class MtimeCinemaTServiceImpl implements IMtimeCinemaTService {
     MtimeCinemaTMapper mtimeCinemaTMapper;
 
     @Override
-    public BaseResultVo selectCinemaListByCondition(RequestVo requestVo) {
+    public BaseVo selectCinemaListByCondition(RequestVo requestVo) {
         if(requestVo.getPageSize()<1||requestVo.getNowPage()<1){
             throw new ServiceException( 1,"影院信息查询失败");
         }
-        List<MtimeCinemaT> mtimeCinemaTList = mtimeCinemaTMapper.selectCinemaListByCondition(requestVo);
-        BaseResultVo baseResultVo = new BaseResultVo();
-        Data data = new Data();
-        data.setCinemas(mtimeCinemaTList);
-        int totalPage = mtimeCinemaTList.size()/requestVo.getPageSize();
+        List<MtimeCinemaT> data = mtimeCinemaTMapper.selectCinemaListByCondition(requestVo);
+        BaseVo baseVo = new BaseVo();
 
-        baseResultVo.setTotalPage(totalPage);
+        int totalPage = data.size()/requestVo.getPageSize()==0?1:data.size()/requestVo.getPageSize();
 
-        baseResultVo.setData(data);
-        baseResultVo.setNowPage(requestVo.getNowPage());
+        baseVo.setTotalPage(totalPage);
 
-        return baseResultVo;
+
+        baseVo.setData(data);
+        baseVo.setNowPage(requestVo.getNowPage());
+
+        return baseVo;
     }
 
     @Override
     public BaseResultVo selectCinemaMsgByCondition(RequestVo requestVo) throws ServiceException{
-        List<MtimeCinemaT> cinemaTList = mtimeCinemaTMapper.selectCinemaMsgByCondition(requestVo);
-
         Data data = new Data();
-        List<MtimeBrandDictT> brandList =data.getMtimeBrandDictTList();
-        List<MtimeAreaDictT> areaList = data.getMtimeAreaDictTList();
-        List<MtimeHallDictT> hallTypeList = data.getMtimeHallDictTList() ;
-        for (MtimeCinemaT cinema : cinemaTList) {
-            MtimeBrandDictT brand = mtimeCinemaTMapper.selectBrandListById(cinema.getBrandId());
-            MtimeAreaDictT area = mtimeCinemaTMapper.selectAreaListById(cinema.getAreaId());
-            brandList.add(brand);
-            areaList.add(area);
+        List<MtimeBrandDictT> brandList = mtimeCinemaTMapper.selectBrandListById(requestVo.getBrandId());
+        List<MtimeAreaDictT> areaList = mtimeCinemaTMapper.selectAreaListById(requestVo.getAreaId());
+        List<MtimeHallDictT> halltypeList = mtimeCinemaTMapper.selectHalltypeListById(requestVo.getHallType());
 
-            String substring = cinema.getHallIds().substring(1);
-            String[] ids = substring.split("#");
-            if(ids==null||ids.length==0){
-                throw new ServiceException( 1,"影院信息查询失败");
-            }
-            for (int i = 0; i < ids.length; i++) {
-                MtimeHallDictT hallType = mtimeCinemaTMapper.selectHallTypeListById(ids[i]);
-                hallTypeList.add(hallType);
-            }
-        }
-        data.setMtimeBrandDictTList(brandList);
-        data.setMtimeAreaDictTList(areaList);
-        data.setMtimeHallDictTList(hallTypeList);
+        data.setBrandList(brandList);
+        data.setAreaList(areaList);
+        data.setHalltypeList(halltypeList);
 
         BaseResultVo baseResultVo = new BaseResultVo();
         baseResultVo.setData(data);
