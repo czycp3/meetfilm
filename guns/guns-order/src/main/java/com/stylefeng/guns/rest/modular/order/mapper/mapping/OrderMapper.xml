@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.stylefeng.guns.rest.modular.order.mapper.OrderMapper">
+    <resultMap id="BaseResultMap" type="com.stylefeng.guns.rest.modular.order.bean.OrderMsgData">
+        <result column="" property="orderId"/>
+        <result column="" property="filmName"/>
+        <result column="" property="fieldTime"/>
+        <result column="" property="cinemaName"/>
+        <result column="" property="seatsName"/>
+        <result column="" property="orderPrice"/>
+        <result column="" property="orderStatus"/>
+        <result column="" property="orderTimestamp"/>
+    </resultMap>
+    <!--map根据需求自己建-->
+</mapper>
+

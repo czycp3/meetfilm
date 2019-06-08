@@ -7,7 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication(scanBasePackages = {"com.stylefeng.guns"})
 @EnableDubboConfiguration
-@MapperScan(basePackages = "com.stylefeng.guns.rest.modular.cinema.dao")
+@MapperScan(basePackages = "com.stylefeng.guns.rest.modular.order.mapper")
 public class GunsOrderApplication {
 
     public static void main(String[] args) {
