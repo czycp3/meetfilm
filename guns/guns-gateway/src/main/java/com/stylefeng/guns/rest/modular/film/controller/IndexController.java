@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class IndexController {
 
-    @Reference
+    @Reference(check = false)
     private IndexService indexService;
 
     @RequestMapping("/film/getIndex")

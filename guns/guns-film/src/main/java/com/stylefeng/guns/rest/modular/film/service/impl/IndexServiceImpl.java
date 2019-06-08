@@ -73,7 +73,7 @@ public class IndexServiceImpl implements IndexService {
             //封装responseVo
             responseVo.setData(indexData);
             responseVo.setStatus(0);
-            responseVo.setImgPre("http://img.meetingshop.cn/");
+            responseVo.setImgPre("http://czycp3.oss-cn-shanghai.aliyuncs.com/");
         }catch (Exception e){
             throw new ServiceException(1,"查询失败，无banner可加载");
         }
