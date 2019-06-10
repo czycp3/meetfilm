@@ -1,6 +1,7 @@
 package com.stylefeng.guns.rest.modular.order.bean;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 
 /**
  * 订单详细信息
@@ -32,7 +33,7 @@ public class OrderMsgData implements Serializable {
     /**
      * 订单的电影票总价格
      */
-    String orderPrice;
+    BigDecimal orderPrice;
     /**
      * 订单完成状态
      */
@@ -85,11 +86,11 @@ public class OrderMsgData implements Serializable {
         this.seatsName = seatsName;
     }
 
-    public String getOrderPrice() {
+    public BigDecimal getOrderPrice() {
         return orderPrice;
     }
 
-    public void setOrderPrice(String orderPrice) {
+    public void setOrderPrice(BigDecimal orderPrice) {
         this.orderPrice = orderPrice;
     }
 
@@ -98,7 +99,7 @@ public class OrderMsgData implements Serializable {
     }
 
     public void setOrderStatus(String orderStatus) {
-        this.orderStatus = orderStatus;
+        this.orderStatus ="0".equals(orderStatus)?"待支付":("1".equals(orderStatus)?"已支付":"已关闭");
     }
 
     public String getOrderTimestamp() {
