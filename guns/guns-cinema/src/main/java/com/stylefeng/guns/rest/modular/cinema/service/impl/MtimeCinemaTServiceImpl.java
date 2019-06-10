@@ -88,7 +88,7 @@ public class MtimeCinemaTServiceImpl implements IMtimeCinemaTService {
         data.setFilmList(mtimeCinemaTS);
         data.setCinemaInfo(mtimeCinemaT);
         baseResultVo.setData(data);
-        baseResultVo.setImgPre("http://img.meetingshop.cn");
+        baseResultVo.setImgPre("http://img.meetingshop.cn/");
         return baseResultVo;
     }
 
