@@ -33,8 +33,13 @@ public class OrderController {
         OrderResultVo orderResultVo = orderService.buyTickets(orderVo, username);
         return orderResultVo;
     }
+
+
     @RequestMapping("/getOrderInfo")
-    public OrderBaseVo getOrderInfo(OrderVo orderVo){
-        return orderService.getOrderInfo(orderVo);
+    public OrderBaseVo getOrderInfo(OrderVo orderVo, HttpServletRequest httpServletRequest){
+        String authToken = httpServletRequest.getHeader("Authorization");
+        authToken = authToken.substring(7);
+        String username = jwtTokenUtil.getUsernameFromToken(authToken);
+        return orderService.getOrderInfo(orderVo,username);
     }
 }

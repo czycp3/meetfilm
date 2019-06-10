@@ -3,6 +3,9 @@ package com.stylefeng.guns.rest.modular.order.service.impl;
 import com.alibaba.dubbo.config.annotation.Service;
 import com.stylefeng.guns.core.exception.ServiceException;
 import com.stylefeng.guns.rest.modular.order.bean.*;
+import com.stylefeng.guns.rest.modular.order.bean.OrderBaseVo;
+import com.stylefeng.guns.rest.modular.order.bean.OrderMsgData;
+import com.stylefeng.guns.rest.modular.order.bean.OrderVo;
 import com.stylefeng.guns.rest.modular.order.mapper.OrderMapper;
 import com.stylefeng.guns.rest.modular.order.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,12 +15,15 @@ import org.springframework.transaction.annotation.Transactional;
 import java.math.BigDecimal;
 import java.util.UUID;
 
+
 /**
  * @Author: zero
  * @Date: 2019/6/8 21:00
  * @Version 1.0
  */
+
 @Service(interfaceClass = OrderService.class)
+
 @Component
 public class OrderServiceImpl implements OrderService {
     @Autowired
@@ -80,8 +86,34 @@ public class OrderServiceImpl implements OrderService {
         }
     }
 
+
     @Override
-    public OrderBaseVo getOrderInfo(OrderVo orderVo) {
-        return null;
+    public OrderBaseVo getOrderInfo(OrderVo orderVo, String username) {
+        OrderBaseVo orderBaseVo = new OrderBaseVo();
+        OrderMsgData[] data=null;
+        try {
+            data = orderMapper.getOrderInfo(username,(orderVo.getNowPage()-1)*orderVo.getPageSize(),orderVo.getPageSize());
+        } catch (Exception e) {
+            throw new ServiceException(999,"系统出现异常，请联系管理员");
+        }
+        if (data==null||data.length<1){
+            throw new ServiceException(1,"订单列表为空哦！~");
+        }
+        int length = data.length;
+        while (length>0){
+            length --;
+            String fieldTime = data[length].getFieldTime();
+            String[] s = fieldTime.split(" ");
+            data[length].setFieldTime(s[0]+" "+s[2]);
+        }
+        orderBaseVo.setStatus(0);
+        orderBaseVo.setData(data);
+        return orderBaseVo;
+    }
+
+    @Override
+    public String getOrderSeatNumber(String cinemaId, String fieldId) {
+        String seatNumber = orderMapper.getOrderSeatNumber(cinemaId,fieldId);
+        return seatNumber;
     }
 }

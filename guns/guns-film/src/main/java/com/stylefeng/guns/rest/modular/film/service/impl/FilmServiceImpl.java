@@ -145,7 +145,7 @@ public class FilmServiceImpl implements FilmService{
         try {
             //第一部分
             filmInfoResultVo = mtimeFilmTMapper.getFilmInfo(name, searchType);
-            filmInfoResultVo.setScoreNum(filmInfoResultVo.getScoreNum() + "万人评分");
+            filmInfoResultVo.setScoreNum(filmInfoResultVo.getScoreNum() + "人评分");
             String totalBox = filmInfoResultVo.getTotalBox();
             double newtotalBox = Double.parseDouble(totalBox) / 10000;
             filmInfoResultVo.setTotalBox(newtotalBox + "万");

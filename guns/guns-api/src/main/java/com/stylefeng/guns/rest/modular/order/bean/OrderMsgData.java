@@ -124,7 +124,7 @@ public class OrderMsgData implements Serializable {
     }
 
     public void setOrderStatus(String orderStatus) {
-        this.orderStatus = orderStatus;
+        this.orderStatus ="0".equals(orderStatus)?"待支付":("1".equals(orderStatus)?"已支付":"已关闭");
     }
 
     public String getOrderTimestamp() {

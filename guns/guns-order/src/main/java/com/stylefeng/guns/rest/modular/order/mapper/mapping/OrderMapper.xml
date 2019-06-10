@@ -43,5 +43,29 @@
         #{orderMsgData.orderTimestamp})
     </insert>
 
+    <!--map根据需求自己建-->
+
+    <resultMap id="getOrderInfoResultMap" type="com.stylefeng.guns.rest.modular.order.bean.OrderMsgData">
+        <result column="UUID" property="orderId"/>
+        <result column="film_name" property="filmName"/>
+        <result column="field_time" property="fieldTime"/>
+        <result column="cinema_name" property="cinemaName"/>
+        <result column="seats_name" property="seatsName"/>
+        <result column="order_price" property="orderPrice"/>
+        <result column="order_status" property="orderStatus"/>
+    </resultMap>
+    <select id="getOrderInfo" resultMap="getOrderInfoResultMap">
+    select mot.UUID as UUID,film_name,CONCAT( order_time,' ',begin_time) as field_time,cinema_name,seats_name,order_price,order_status
+    from (select * from mooc_order_t where order_user = (select UUID from mtime_user_t where user_name=#{username})) as mot
+    left join mtime_cinema_t as mct on mot.cinema_id=mct.UUID
+    left join mtime_hall_film_info_t as mhfit on mot.film_id=mhfit.film_id
+    left join mtime_field_t as mft on mot.field_id=mft.UUID
+    limit #{offset} , #{pagesize}
+    </select>
+    <select id="getOrderSeatNumber" resultType="string">
+    SELECT GROUP_CONCAT(seats_ids separator ',')
+    FROM mooc_order_t
+    where cinema_id=#{cinemaId} and field_id=#{fieldId}
+    </select>
 </mapper>
 

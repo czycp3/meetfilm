@@ -104,11 +104,4 @@ public class FilmInfoResultVo implements Serializable {
         this.info04 = info04;
     }
 
-//    public FilmInfoResultVoImgVo getImgVO() {
-//        return imgVO;
-//    }
-//
-//    public void setImgVO(FilmInfoResultVoImgVo imgVO) {
-//        this.imgVO = imgVO;
-//    }
 }
