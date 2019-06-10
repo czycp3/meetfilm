@@ -116,7 +116,7 @@ public class OrderMsgData implements Serializable {
     }
 
     public void setSeatsName(String seatsName) {
-        this.seatsName = seatsName;
+        this.seatsName = seatsName.replace(","," ");
     }
 
     public String getOrderStatus() {

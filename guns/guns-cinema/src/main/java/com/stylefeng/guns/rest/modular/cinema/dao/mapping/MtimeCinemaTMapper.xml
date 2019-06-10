@@ -21,11 +21,11 @@
             <if test="requestVo.brandId!=99">
                 brand_id=#{requestVo.brandId}
             </if>
-            <if test="requestVo.hallType!=99">
-                and hall_ids like concat('%#',#{requestVo.hallType},'#%')
+            <if test="requestVo.halltypeId!=99">
+                and hall_ids like concat('%#',#{requestVo.halltypeId},'#%')
             </if>
-            <if test="requestVo.districtId!=99">
-                and area_id=#{requestVo.districtId}
+            <if test="requestVo.areaId!=99">
+                and area_id=#{requestVo.areaId}
             </if>
         </where>
     </select>

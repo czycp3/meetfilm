@@ -15,6 +15,16 @@ public class RequestVo implements Serializable {
     Integer nowPage=1;
     Integer areaId=99;
 
+    Integer halltypeId=99;
+
+    public Integer getHalltypeId() {
+        return halltypeId;
+    }
+
+    public void setHalltypeId(Integer halltypeId) {
+        this.halltypeId = halltypeId;
+    }
+
     public Integer getPageSize() {
         return pageSize;
     }
