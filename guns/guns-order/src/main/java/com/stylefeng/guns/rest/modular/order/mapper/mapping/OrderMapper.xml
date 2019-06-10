@@ -40,7 +40,7 @@
         #{orderMsgData.orderPrice},
         now(),
         #{userId},
-        #{orderMsgData.orderTimestamp})
+        0)
     </insert>
 
     <!--map根据需求自己建-->
@@ -65,7 +65,10 @@
     <select id="getOrderSeatNumber" resultType="string">
     SELECT GROUP_CONCAT(seats_ids separator ',')
     FROM mooc_order_t
-    where cinema_id=#{cinemaId} and field_id=#{fieldId}
+    <where>
+        cinema_id=#{cinemaId} and field_id=#{fieldId}
+        and order_status in (0,1)
+    </where>
     </select>
 </mapper>
 

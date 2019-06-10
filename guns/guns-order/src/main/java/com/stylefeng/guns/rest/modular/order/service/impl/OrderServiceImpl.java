@@ -64,7 +64,7 @@ public class OrderServiceImpl implements OrderService {
         int orderTimestamp = (int) (System.currentTimeMillis() / 1000);
         orderMsgData.setOrderTimestamp(String.valueOf(orderTimestamp));
         //生成订单id
-        String orderId = UUID.randomUUID().toString().substring(0, 16);
+        String orderId = UUID.randomUUID().toString().replace("-","");
         orderMsgData.setOrderId(orderId);
 
         //将orderMsgData封装到OrderBaseVo中
