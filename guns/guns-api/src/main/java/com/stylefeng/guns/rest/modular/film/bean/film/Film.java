@@ -15,6 +15,7 @@ public class Film implements Serializable {
     private int filmPreSaleNum;
     private double boxNum;
     private int filmSource;
+    private String score;
     private String filmCats;
     private int filmArea;
     private int filmDate;
@@ -60,6 +61,35 @@ public class Film implements Serializable {
 
     public void setFilmScore(String filmScore) {
         this.filmScore = filmScore;
+    }
+
+    @Override
+    public String toString() {
+        return "Film{" +
+                "filmId=" + filmId +
+                ", filmName='" + filmName + '\'' +
+                ", filmType=" + filmType +
+                ", imgAddress='" + imgAddress + '\'' +
+                ", filmScore='" + filmScore + '\'' +
+                ", filmPreSaleNum=" + filmPreSaleNum +
+                ", boxNum=" + boxNum +
+                ", filmSource=" + filmSource +
+                ", score=" + score +
+                ", filmCats='" + filmCats + '\'' +
+                ", filmArea=" + filmArea +
+                ", filmDate=" + filmDate +
+                ", showTime='" + showTime + '\'' +
+                ", filmStatus=" + filmStatus +
+                ", expectNum=" + expectNum +
+                '}';
+    }
+
+    public String getScore() {
+        return score;
+    }
+
+    public void setScore(String score) {
+        this.score = score;
     }
 
     public int getFilmPreSaleNum() {
@@ -134,23 +164,4 @@ public class Film implements Serializable {
         this.expectNum = expectNum;
     }
 
-    @Override
-    public String toString() {
-        return "Film{" +
-                "filmId=" + filmId +
-                ", filmName='" + filmName + '\'' +
-                ", filmType=" + filmType +
-                ", imgAddress='" + imgAddress + '\'' +
-                ", filmScore='" + filmScore + '\'' +
-                ", filmPreSaleNum=" + filmPreSaleNum +
-                ", boxNum=" + boxNum +
-                ", filmSource=" + filmSource +
-                ", filmCats='" + filmCats + '\'' +
-                ", filmArea=" + filmArea +
-                ", filmDate=" + filmDate +
-                ", showTime='" + showTime + '\'' +
-                ", filmStatus=" + filmStatus +
-                ", expectNum=" + expectNum +
-                '}';
-    }
 }

@@ -4,6 +4,8 @@ import com.alibaba.dubbo.config.annotation.Service;
 import com.stylefeng.guns.core.exception.ServiceException;
 import com.stylefeng.guns.pay.modular.alipay.OrderPayUtil;
 import com.stylefeng.guns.pay.modular.alipay.model.TradeStatus;
+import com.stylefeng.guns.pay.modular.payservice.mapper.PayMapper;
+import com.stylefeng.guns.rest.modular.order.bean.OrderMsgData;
 import com.stylefeng.guns.rest.modular.pay.bean.PayInfo;
 import com.stylefeng.guns.rest.modular.pay.bean.PayResultVo;
 import com.stylefeng.guns.rest.modular.pay.bean.PayStatusInfo;
@@ -22,13 +24,22 @@ public class PayServiceImpl implements PayService {
     @Autowired
     OrderPayUtil orderPayUtil;
 
+    @Autowired
+    PayMapper payMapper;
+
     @Override
     public PayResultVo getPayInfo(String orderId) {
         PayResultVo payResultVo = new PayResultVo();
         PayInfo payInfo = new PayInfo();
 
-        //生成订单二维码
-        TradeStatus tradeStatus = orderPayUtil.tradePrecreate(orderId);
+        OrderMsgData orderMsgData = payMapper.queryOrderById(orderId);
+        TradeStatus tradeStatus;
+        if("0".equals(orderMsgData.getOrderStatus())) {
+            //生成订单二维码
+            tradeStatus = orderPayUtil.tradePrecreate(orderMsgData);
+        }else {
+            tradeStatus = TradeStatus.UNKNOWN;
+        }
         switch (tradeStatus) {
             case SUCCESS:
                 payInfo.setQRCodeAddress("QRCodes/" + orderId + ".png");
@@ -36,7 +47,7 @@ public class PayServiceImpl implements PayService {
             case FAILED:
                 throw new ServiceException(1, "订单支付失败，请稍后重试");
             case UNKNOWN:
-                throw new ServiceException(1, "系统异常，预下单状态未知!!!");
+                throw new ServiceException(1, "订单已支付或已关闭");
             default:
                 throw new ServiceException(1, "系统异常");
         }
@@ -67,6 +78,7 @@ public class PayServiceImpl implements PayService {
                 payStatusInfo.setOrderStatus(1);
                 payStatusVo.setData(payStatusInfo);
                 payStatusVo.setStatus(0);
+                payMapper.updateOrder(orderId);
                 break;
             case FAILED:
                 throw new ServiceException(1,"订单支付失败，请稍后重试");

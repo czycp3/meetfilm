@@ -12,6 +12,7 @@ public class Film implements Serializable {
     private int filmType;
     private String imgAddress;
     private String filmScore;
+    private String score;
     private int filmPreSaleNum;
     private double boxNum;
     private int filmSource;
@@ -60,6 +61,14 @@ public class Film implements Serializable {
 
     public void setFilmScore(String filmScore) {
         this.filmScore = filmScore;
+    }
+
+    public String getScore() {
+        return score;
+    }
+
+    public void setScore(String score) {
+        this.score = score;
     }
 
     public int getFilmPreSaleNum() {
@@ -142,6 +151,7 @@ public class Film implements Serializable {
                 ", filmType=" + filmType +
                 ", imgAddress='" + imgAddress + '\'' +
                 ", filmScore='" + filmScore + '\'' +
+                ", score=" + score +
                 ", filmPreSaleNum=" + filmPreSaleNum +
                 ", boxNum=" + boxNum +
                 ", filmSource=" + filmSource +

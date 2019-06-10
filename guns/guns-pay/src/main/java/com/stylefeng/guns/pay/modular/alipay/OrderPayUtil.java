@@ -26,6 +26,7 @@ import com.stylefeng.guns.pay.modular.alipay.service.impl.AlipayTradeServiceImpl
 import com.stylefeng.guns.pay.modular.alipay.service.impl.AlipayTradeWithHBServiceImpl;
 import com.stylefeng.guns.pay.modular.alipay.utils.Utils;
 import com.stylefeng.guns.pay.modular.alipay.utils.ZxingUtils;
+import com.stylefeng.guns.rest.modular.order.bean.OrderMsgData;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -129,13 +130,13 @@ public class OrderPayUtil {
     }
 
     // 测试当面付2.0生成支付二维码
-    public TradeStatus tradePrecreate(String orderId) {
+    public TradeStatus tradePrecreate(OrderMsgData order) {
         // (必填) 订单标题，粗略描述用户的支付目的。如“xxx品牌xxx门店当面付扫码消费”
-        String subject = "Meet影城当面付扫码消费";
+        String subject = "Meet影城" + order.getCinemaName() + "当面付扫码消费";
 
         // (必填) 订单总金额，单位为元，不能超过1亿元
         // 如果同时传入了【打折金额】,【不可打折金额】,【订单总金额】三者,则必须满足如下条件:【订单总金额】=【打折金额】+【不可打折金额】
-        String totalAmount = "100";
+        String totalAmount = order.getOrderPrice();
 
         // (可选) 订单不可打折金额，可以配合商家平台配置折扣活动，如果酒水不参与打折，则将对应金额填写至此字段
         // 如果该值未传入,但传入了【订单总金额】,【打折金额】,则该值默认为【订单总金额】-【打折金额】
@@ -146,7 +147,9 @@ public class OrderPayUtil {
         String sellerId = "";
 
         // 订单描述，可以对交易或商品进行一个详细地描述，比如填写"购买商品2件共15.00元"
-        String body = "购买电影票共100.00元";
+        String body = "购买" + order.getCinemaName() + "电影票\r\n"
+                        + order.getSeatsName() + "\r\n"
+                        + "共" + order.getOrderPrice() +"元";
 
         // 商户操作员编号，添加此参数可以为商户操作员做销售统计
         String operatorId = "test_operator_id";
@@ -168,13 +171,10 @@ public class OrderPayUtil {
         // 创建好一个商品后添加至商品明细列表
         goodsDetailList.add(goods1);
 
-        // 继续创建并添加第一条商品信息，用户购买的产品为“黑人牙刷”，单价为5.00元，购买了两件
-        GoodsDetail goods2 = GoodsDetail.newInstance("goods_id002", "xxx牙刷", 500, 2);
-        goodsDetailList.add(goods2);
 
         // 创建扫码支付请求builder，设置请求参数
         AlipayTradePrecreateRequestBuilder builder = new AlipayTradePrecreateRequestBuilder()
-            .setSubject(subject).setTotalAmount(totalAmount).setOutTradeNo(orderId)
+            .setSubject(subject).setTotalAmount(totalAmount).setOutTradeNo(order.getOrderId())
             .setUndiscountableAmount(undiscountableAmount).setSellerId(sellerId).setBody(body)
             .setOperatorId(operatorId).setStoreId(storeId).setExtendParams(extendParams)
             .setTimeoutExpress(timeoutExpress)
