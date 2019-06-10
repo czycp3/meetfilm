@@ -1,10 +1,8 @@
 package com.stylefeng.guns.rest.modular.order.service;
 
-import com.stylefeng.guns.rest.modular.cinema.bean.BaseResultVo;
 import com.stylefeng.guns.rest.modular.order.bean.OrderBaseVo;
 import com.stylefeng.guns.rest.modular.order.bean.OrderVo;
 
-import javax.servlet.http.HttpServletRequest;
 
 /**
  * @Author: zero

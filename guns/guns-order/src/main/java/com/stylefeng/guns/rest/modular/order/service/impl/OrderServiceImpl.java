@@ -34,9 +34,13 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public OrderBaseVo getOrderInfo(OrderVo orderVo, String username) {
         OrderBaseVo orderBaseVo = new OrderBaseVo();
-        OrderMsgData[] data;
-        data = orderMapper.getOrderInfo(username,(orderVo.getNowPage()-1)*orderVo.getPageSize(),orderVo.getPageSize());
-        if (data.length<1){
+        OrderMsgData[] data=null;
+        try {
+            data = orderMapper.getOrderInfo(username,(orderVo.getNowPage()-1)*orderVo.getPageSize(),orderVo.getPageSize());
+        } catch (Exception e) {
+            throw new ServiceException(999,"系统出现异常，请联系管理员");
+        }
+        if (data==null||data.length<1){
             throw new ServiceException(1,"订单列表为空哦！~");
         }
         int length = data.length;
