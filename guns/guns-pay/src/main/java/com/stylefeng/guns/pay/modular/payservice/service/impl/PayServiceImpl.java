@@ -34,7 +34,7 @@ public class PayServiceImpl implements PayService {
 
         OrderMsgData orderMsgData = payMapper.queryOrderById(orderId);
         TradeStatus tradeStatus;
-        if("0".equals(orderMsgData.getOrderStatus())) {
+        if("待支付".equals(orderMsgData.getOrderStatus())) {
             //生成订单二维码
             tradeStatus = orderPayUtil.tradePrecreate(orderMsgData);
         }else {
@@ -54,7 +54,7 @@ public class PayServiceImpl implements PayService {
         //封装数据
         payInfo.setOrderId(orderId);
         payResultVo.setStatus(0);
-        payResultVo.setImgPre("http://img.meetingshop.cn/");
+        payResultVo.setImgPre("http://czycp3.oss-cn-shanghai.aliyuncs.com/");
         payResultVo.setData(payInfo);
         return payResultVo;
     }

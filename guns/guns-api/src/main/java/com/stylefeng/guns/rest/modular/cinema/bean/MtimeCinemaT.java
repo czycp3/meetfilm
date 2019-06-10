@@ -74,6 +74,15 @@ public class MtimeCinemaT extends Model<MtimeCinemaT> {
     @TableField("cinema_address")
     private String address;
     private String cinemaAddress;
+    private String cinemaAdress;
+
+    public String getCinemaAdress() {
+        return cinemaAdress;
+    }
+
+    public void setCinemaAdress(String cinemaAdress) {
+        this.cinemaAdress = cinemaAdress;
+    }
 
     public String getCinemaAddress() {
         return cinemaAddress;

@@ -1,6 +1,7 @@
 package com.stylefeng.guns.rest.modular.order.bean;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 
 /**
  * 订单详细信息
@@ -26,23 +27,56 @@ public class OrderMsgData implements Serializable {
      */
     String cinemaName;
     /**
-     * 座位号
+     * 订单座位号id
+     */
+    String seatsIds;
+    /**
+     * 座位号名字
      */
     String seatsName;
     /**
+     * 电影票单价
+     */
+    BigDecimal ticketPrice;
+    /**
      * 订单的电影票总价格
      */
-    String orderPrice;
+    BigDecimal orderPrice;
     /**
      * 订单完成状态
+     * 0-待支付,1-已支付,2-已关闭
      */
     String orderStatus;
     /**
-     * 处理订单时间标记
+     * 订单时间戳
      */
     String orderTimestamp;
 
     public OrderMsgData() {
+    }
+
+    public String getSeatsIds() {
+        return seatsIds;
+    }
+
+    public void setSeatsIds(String seatsIds) {
+        this.seatsIds = seatsIds;
+    }
+
+    public BigDecimal getTicketPrice() {
+        return ticketPrice;
+    }
+
+    public void setTicketPrice(BigDecimal ticketPrice) {
+        this.ticketPrice = ticketPrice;
+    }
+
+    public BigDecimal getOrderPrice() {
+        return orderPrice;
+    }
+
+    public void setOrderPrice(BigDecimal orderPrice) {
+        this.orderPrice = orderPrice;
     }
 
     public String getOrderId() {
@@ -85,24 +119,16 @@ public class OrderMsgData implements Serializable {
         this.seatsName = seatsName;
     }
 
-    public String getOrderPrice() {
-        return orderPrice;
-    }
-
-    public void setOrderPrice(String orderPrice) {
-        this.orderPrice = orderPrice;
-    }
-
     public String getOrderStatus() {
         return orderStatus;
     }
 
     public void setOrderStatus(String orderStatus) {
-        this.orderStatus = orderStatus;
+        this.orderStatus ="0".equals(orderStatus)?"待支付":("1".equals(orderStatus)?"已支付":"已关闭");
     }
 
     public String getOrderTimestamp() {
-        return orderTimestamp;
+        return orderTimestamp==null?"0":orderTimestamp;
     }
 
     public void setOrderTimestamp(String orderTimestamp) {

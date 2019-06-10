@@ -85,6 +85,7 @@ public class MtimeCinemaTServiceImpl implements IMtimeCinemaTService {
         if (mtimeCinemaT==null||mtimeCinemaTS==null){
             throw new ServiceException( 1,"影院信息查询失败");
         }
+        mtimeCinemaT.setImgUrl(mtimeCinemaT.getImgUrl().substring(1));
         data.setFilmList(mtimeCinemaTS);
         data.setCinemaInfo(mtimeCinemaT);
         baseResultVo.setData(data);

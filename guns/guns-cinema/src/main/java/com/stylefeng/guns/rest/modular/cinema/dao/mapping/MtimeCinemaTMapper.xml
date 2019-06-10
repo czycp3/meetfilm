@@ -108,7 +108,7 @@
     <id column="mctid" property="cinemaId"/>
     <result column="mct_img" property="imgUrl"/>
     <result column="cinema_name" property="cinemaName"/>
-    <result column="cinema_address" property="cinemaAddress"/>
+    <result column="cinema_address" property="cinemaAdress"/>
     <result column="cinema_phone" property="cinemaPhone"/>
     </resultMap>
     <resultMap id="DataFilmList" type="com.stylefeng.guns.rest.modular.cinema.bean.MtimeHallFilmInfoT">

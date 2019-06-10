@@ -16,7 +16,7 @@ public class OrderVo implements Serializable {
     /**
      * 购买座位编号
      */
-    Integer soldSeats;
+    String soldSeats;
     /**
      * 购买座位的名称
      */
@@ -41,11 +41,11 @@ public class OrderVo implements Serializable {
         this.fieldId = fieldId;
     }
 
-    public Integer getSoldSeats() {
+    public String getSoldSeats() {
         return soldSeats;
     }
 
-    public void setSoldSeats(Integer soldSeats) {
+    public void setSoldSeats(String soldSeats) {
         this.soldSeats = soldSeats;
     }
 

@@ -1,5 +1,6 @@
 package com.stylefeng.guns.rest.modular.cinema.service.impl;
 
+import com.alibaba.dubbo.config.annotation.Reference;
 import com.alibaba.dubbo.config.annotation.Service;
 import com.stylefeng.guns.core.exception.ServiceException;
 import com.stylefeng.guns.rest.modular.cinema.bean.BaseResultVo;
@@ -7,6 +8,7 @@ import com.stylefeng.guns.rest.modular.cinema.bean.Data;
 import com.stylefeng.guns.rest.modular.cinema.bean.MtimeHallDictT;
 import com.stylefeng.guns.rest.modular.cinema.dao.MtimeFieldTMapper;
 import com.stylefeng.guns.rest.modular.cinema.service.IMtimeFieldTService;
+import com.stylefeng.guns.rest.modular.order.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -23,6 +25,8 @@ import org.springframework.stereotype.Component;
 public class MtimeFieldTServiceImpl implements IMtimeFieldTService {
     @Autowired
     MtimeFieldTMapper mtimeFieldTMapper;
+    @Reference(check = false)
+    OrderService orderService;
     @Override
     public BaseResultVo GetFieldInfo(String cinemaId,String fieldId) {
         BaseResultVo baseResultVo = new BaseResultVo();
@@ -39,7 +43,8 @@ public class MtimeFieldTServiceImpl implements IMtimeFieldTService {
         throw new ServiceException( 1,"影院信息查询失败");
         }
         MtimeHallDictT hallInfo = data.getHallInfo();
-        hallInfo.setSoldSeats("1,2,3,5,12");
+        String orderSeatNumber = orderService.getOrderSeatNumber(cinemaId, fieldId);
+        hallInfo.setSoldSeats(orderSeatNumber);
         baseResultVo.setData(data);
         baseResultVo.setStatus(0);
         baseResultVo.setImgPre("http://img.meetingshop.cn/");
