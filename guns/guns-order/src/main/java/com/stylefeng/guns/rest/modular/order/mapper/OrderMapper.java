@@ -22,4 +22,6 @@ public interface OrderMapper {
     OrderMsgData[] getOrderInfo(@Param("username") String username,@Param("offset") int i,@Param("pagesize") Integer pageSize);
 
     String getOrderSeatNumber(@Param("cinemaId") String cinemaId,@Param("fieldId") String fieldId);
+
+    String getJsonAddressByFieldId(@Param("fieldId") Integer fieldId);
 }

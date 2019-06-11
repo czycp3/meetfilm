@@ -51,6 +51,31 @@ public class OrderMsgData implements Serializable {
      * 订单时间戳
      */
     String orderTimestamp;
+    /**
+     * 影厅名
+     */
+    String hallName;
+
+    public String getHallName() {
+        return hallName;
+    }
+
+    public void setHallName(String hallName) {
+        this.hallName = hallName;
+    }
+
+    /**
+     * 电影图片地址
+     */
+    String src;
+
+    public String getSrc() {
+        return src;
+    }
+
+    public void setSrc(String src) {
+        this.src = "http://img.meetingshop.cn/"+src;
+    }
 
     public OrderMsgData() {
     }
