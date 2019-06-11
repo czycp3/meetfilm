@@ -11,7 +11,7 @@
     </resultMap>
 
     <update id="updateOrder">
-        update order_status from mooc_order_t where UUID = #{orderId}
+        update mooc_order_t set order_status = '1' where UUID = #{orderId}
 
     </update>
     <select id="queryOrderById" resultMap="orderMap">

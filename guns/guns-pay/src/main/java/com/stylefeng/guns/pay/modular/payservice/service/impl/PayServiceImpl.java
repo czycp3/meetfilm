@@ -68,6 +68,12 @@ public class PayServiceImpl implements PayService {
             throw new ServiceException(1,"订单支付失败，请稍后重试");
         }
 
+//        try {
+//            Thread.sleep(15000);
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
+
         //查询订单状态
         TradeStatus tradeStatus = orderPayUtil.tradeQuery(orderId);
 
