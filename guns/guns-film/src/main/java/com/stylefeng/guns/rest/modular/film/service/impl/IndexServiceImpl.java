@@ -57,7 +57,7 @@ public class IndexServiceImpl implements IndexService {
             List<Film> boxRankingList = indexMapper.queryFilms(1, "film_box_office");
 
             //查询主页expectRanking信息
-            List<Film> expectRankingList = indexMapper.queryFilms(0, "expect_num");
+            List<Film> expectRankingList = indexMapper.queryFilms(2, "expect_num");
 
             //查询主页top100信息
             List<Film> top100List = indexMapper.queryFilms(0, "film_score");
