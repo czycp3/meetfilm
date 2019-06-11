@@ -25,6 +25,11 @@
     <select id="selectUserIdByUsername" resultType="_int">
         select UUID from mtime_user_t where user_name=#{username}
     </select>
+    <select id="getJsonAddressByFieldId" resultType="String">
+        select seat_address from mtime_field_t field
+        left join mtime_hall_dict_t hall on hall.UUID=field.hall_id
+        where field.UUID= #{fieldId}
+    </select>
 
     <insert id="insertOrder">
         insert into mooc_order_t
@@ -53,22 +58,23 @@
         <result column="seats_name" property="seatsName"/>
         <result column="order_price" property="orderPrice"/>
         <result column="order_status" property="orderStatus"/>
+        <result column="hall_name" property="hallName"/>
+        <result column="src" property="src"/>
     </resultMap>
     <select id="getOrderInfo" resultMap="getOrderInfoResultMap">
-    select mot.UUID as UUID,film_name,CONCAT( order_time,' ',begin_time) as field_time,cinema_name,seats_name,order_price,order_status
-    from (select * from mooc_order_t where order_user = (select UUID from mtime_user_t where user_name=#{username})) as mot
-    left join mtime_cinema_t as mct on mot.cinema_id=mct.UUID
-    left join mtime_hall_film_info_t as mhfit on mot.film_id=mhfit.film_id
-    left join mtime_field_t as mft on mot.field_id=mft.UUID
-    limit #{offset} , #{pagesize}
+        select mot.UUID as UUID,film_name,CONCAT( order_time,' ',begin_time) as field_time,cinema_name,seats_name,order_price,order_status,hall_name,mhfit.img_address as src
+        from (select * from mooc_order_t where order_user = (select UUID from mtime_user_t where user_name=#{username})) as mot
+        left join mtime_cinema_t as mct on mot.cinema_id=mct.UUID
+        left join mtime_hall_film_info_t as mhfit on mot.film_id=mhfit.film_id
+        left join mtime_field_t as mft on mot.field_id=mft.UUID
     </select>
     <select id="getOrderSeatNumber" resultType="string">
-    SELECT GROUP_CONCAT(seats_ids separator ',')
-    FROM mooc_order_t
-    <where>
-        cinema_id=#{cinemaId} and field_id=#{fieldId}
-        and order_status in (0,1)
-    </where>
+        SELECT GROUP_CONCAT(seats_ids separator ',')
+        FROM mooc_order_t
+        <where>
+            cinema_id=#{cinemaId} and field_id=#{fieldId}
+            and order_status in (0,1)
+        </where>
     </select>
 </mapper>
 
