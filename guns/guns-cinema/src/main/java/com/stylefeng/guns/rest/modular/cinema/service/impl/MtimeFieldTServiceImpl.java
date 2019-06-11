@@ -47,7 +47,7 @@ public class MtimeFieldTServiceImpl implements IMtimeFieldTService {
         hallInfo.setSoldSeats(orderSeatNumber);
         baseResultVo.setData(data);
         baseResultVo.setStatus(0);
-        baseResultVo.setImgPre("http://img.meetingshop.cn/");
+        baseResultVo.setImgPre("http://czycp3.oss-cn-shanghai.aliyuncs.com/");
         return baseResultVo;
     }
 }

@@ -74,7 +74,7 @@ public class OrderMsgData implements Serializable {
     }
 
     public void setSrc(String src) {
-        this.src = "http://img.meetingshop.cn/"+src;
+        this.src = "http://czycp3.oss-cn-shanghai.aliyuncs.com/"+src;
     }
 
     public OrderMsgData() {
