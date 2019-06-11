@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class PayController {
 
-    @Reference
+    @Reference(check = false)
     PayService payService;
 
     @RequestMapping("/order/getPayInfo")

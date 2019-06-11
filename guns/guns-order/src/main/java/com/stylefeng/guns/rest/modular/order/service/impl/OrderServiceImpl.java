@@ -91,16 +91,16 @@ public class OrderServiceImpl implements OrderService {
 
 /*        for (String seatNum : seatMsg) {
             int seat = Integer.parseInt(seatNum);
-            if (seat > 0 && seat <= 5) {
+            if(seat>0&&seat<=5) {
                 seatsName.append("第一排" + seat + "座,");
-            } else if (seat > 5 && seat <= 10) {
+            }else if(seat>5&&seat<=10) {
                 seatsName.append("第二排" + (seat - 4) + "座,");
-            } else if (seat > 10 && seat <= 16) {
+            }else if(seat>10&&seat<=16) {
                 seatsName.append("第三排" + (seat - 4 * 2) + "座,");
-            } else if (seat > 16 && seat <= 22) {
+            }else if (seat>16&&seat<=22) {
                 seatsName.append("第四排" + (seat - 4 * 3) + "座,");
-            } else {
-                throw new ServiceException(2, "订单座位号产生错误，请重新选择座位");
+            }else{
+                throw new ServiceException(2,"订单座位号产生错误，请重新选择座位");
             }
         }*/
         String substring = seatsName.substring(0, seatsName.length() - 1);

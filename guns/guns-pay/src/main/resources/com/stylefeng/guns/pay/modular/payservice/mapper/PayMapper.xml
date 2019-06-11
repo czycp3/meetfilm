@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.stylefeng.guns.pay.modular.payservice.mapper.PayMapper">
+
+    <resultMap id="orderMap" type="com.stylefeng.guns.rest.modular.order.bean.OrderMsgData">
+        <result column="UUID" property="orderId"/>
+        <result column="seats_name" property="seatsName"/>
+        <result column="order_price" property="orderPrice"/>
+        <result column="cinema_name" property="cinemaName"/>
+        <result column="order_status" property="orderStatus"/>
+    </resultMap>
+
+    <update id="updateOrder">
+        update mooc_order_t set order_status = '1' where UUID = #{orderId}
+
+    </update>
+    <select id="queryOrderById" resultMap="orderMap">
+        select o.UUID, o.order_status,o.seats_name,o.order_price,c.cinema_name
+        from mooc_order_t o,mtime_cinema_t c
+        where o.cinema_id = c.UUID and o.UUID = #{orderId}
+    </select>
+</mapper>
