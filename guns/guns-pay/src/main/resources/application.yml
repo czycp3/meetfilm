@@ -49,5 +49,5 @@ logging:
 oss:
   bucketName: czycp3
   endpoint: oss-cn-shanghai.aliyuncs.com
-  accessId: #######
-  accessSecret: #######
+  accessId: ################
+  accessSecret: ##################
